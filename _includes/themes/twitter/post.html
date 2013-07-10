@@ -7,9 +7,21 @@
     <div class="date">
       <span>{{ page.date | date_to_long_string }}</span>
     </div>
+
+    
     <div class="content">
       {{ content }}
     </div>
+
+    <div class="clearfix">
+      <div class="pull-left">
+      {% include custom/followme %}
+      </div>
+      <div class="pull-right">
+        {% include JB/sharing %}
+      </div>
+    </div>
+    <hr>
 
   {% unless page.categories == empty %}
     <ul class="tag_box inline">
@@ -26,13 +38,9 @@
       {% include JB/tags_list %}
     </ul>
   {% endunless %}  
-    <br>
-    <a href="https://twitter.com/eranation" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @eranation</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <br>
 
-    <br>
-    {% include JB/sharing %}
+
+
     <hr>
     <div class="pagination">
       <ul>
