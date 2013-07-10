@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Under construction
-#tagline: a blog by Eran Medan
+title: Latest Posts
+#tagline: a blog about code
 ---
 {% include JB/setup %}
 <!-- 
@@ -33,14 +33,22 @@ When you don't need the samples anymore just delete the `_posts/core-samples` fo
 Here's a sample "posts list".
  -->
 
-## Sample Posts
- 
-<ul class="posts">
+
+<ul >
+    {% for post in site.posts limit 4 %}
+    <h2><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h2>
+    <strong>{{ post.date | date_to_string }}</strong><br><br>
+        {{ post.content }}<br>
+    <hr>
+    {% endfor %}
+</ul>
+
+<!-- <ul class="posts">
   {% for post in site.posts %}
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
-
+ -->
 
 
 
