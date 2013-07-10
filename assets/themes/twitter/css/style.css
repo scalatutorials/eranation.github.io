@@ -1,3 +1,11 @@
+.logo > img {
+  width: 30px;
+}
+.logo {
+    float: left;
+    line-height: 40px;
+}
+
 /* Custom container */
 .container-narrow {
   margin: 0 auto;
