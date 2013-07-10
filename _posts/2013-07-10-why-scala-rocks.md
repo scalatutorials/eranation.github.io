@@ -15,22 +15,15 @@ Just like in Ruby, the boilerplate of writting getters / setters for simple prop
 
 ```scala
 class Person(var sanity:Int = 50)
-```
 
+object Main extends App {
+  val programmer = new Test3(50)
+  programmer.param += 1000000
+  println(programmer.param)
+}
+```
 This is equivalent more or less to Ruby's `attr_accessor :sanity`
 
-Using it requires some boilerplate main method ceremony, but it's pretty concise in my opinion.
-
-```scala
-object Main {
-  def main(args: Array[String]) {
-    val programmer = new Person()
-    programmer.sanity += 1000000
-    println (programmer.sanity)
-  }
-}
-
-```
 The syntactic desugar version of it is something (very roughly) like this: 
 
 ```scala
