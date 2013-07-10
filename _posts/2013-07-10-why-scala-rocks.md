@@ -71,4 +71,4 @@ This will print pretty much the same as the Ruby example
     Here, you can have your splines back.
 
 
-So although I agree that Ruby rocks, Scala is not doing so bad as well, and can be a real delight for Ruby developers IMHO.
+There are of course many other features that can grant Scala a "it rocks" attribute, I'll post some of my favorites soon
