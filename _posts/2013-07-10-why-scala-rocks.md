@@ -17,9 +17,9 @@ Just like in Ruby, the boilerplate of writting getters / setters for simple prop
 class Person(var sanity:Int = 50)
 
 object Main extends App {
-  val programmer = new Test3(50)
-  programmer.param += 1000000
-  println(programmer.param)
+  val programmer = new Person(50)
+  programmer.sanity += 1000000
+  println(programmer.sanity)
 }
 ```
 This is equivalent more or less to Ruby's `attr_accessor :sanity`
