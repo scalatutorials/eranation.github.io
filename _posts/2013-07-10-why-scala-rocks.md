@@ -1,17 +1,22 @@
 ---
 layout: post
-title: "Why Scala Rocks"
+title: "Why Scala Rocks*"
 description: ""
 category: Code
 tags: [scala]
 ---
 {% include JB/setup %}
 
-Without trying to provoke language flame wars, after reading [Why Ruby Rocks](http://skofo.github.io/blog/why-ruby-rocks/) I thought it would be nice to try and see how Scala is doing in the "rocks or not" metric using the same examples. (although I'm sure there are more exciting features in both languages other than automatic getters / setters and dynamic methods, but I'm sure the OP just used them as a representing sample)
+<small>* a response to [Why Ruby Rocks](http://skofo.github.io/blog/why-ruby-rocks/)</small>
+
+In case you are new to Scala, don't take it as a representing case, this is *not* idiomatic scala, and there are much better featrues making Scala a great language in my opinion.
+Having said that, here are the 2 examples in the "Why Ruby Rocks" post, implemented in Scala:
+
+***
 
 ### Automatic getters / setters
 
-Just like in Ruby, the boilerplate of writting getters / setters for simple properties is eliminated. Scala automatically generates a getter and setter method (named the same as the member)  
+Just like in Ruby, the boilerplate of writing getters / setters for simple properties is eliminated. Scala automatically generates a getter and setter method (named the same as the member)  
 
 ```scala
 class Person(var sanity:Int = 50)
@@ -32,6 +37,11 @@ class Person(private[this] var _sanity:Int = 50) {
   def sanity_= (sanity:Int) {this._sanity = sanity}
 }
 ```
+
+<div class="alert alert-error">
+Note - idiomatic Scala discourages mutable objects, so prefer using <code>val</code> which is final and will only generate an automatic getter
+</div>
+
 
 ### Dynamic methods 
 
@@ -63,5 +73,9 @@ This will print pretty much the same as the Ruby example
     Sorry!, I wish I could reticulate...
     Here, you can have your splines back.
 
+<div class="alert alert-error">
+Note - don't do this unless you have a very good reason, it has performance and code smell issues
+</div>
 
-There are of course many other features that can grant Scala a "it rocks" attribute, I'll post some of my favorites soon
+
+There are of course many other features that can grant Scala a "it rocks" attribute, which deserve a separate post.
