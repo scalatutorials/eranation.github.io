@@ -73,9 +73,7 @@ This will print pretty much the same as the Ruby example
     Sorry!, I wish I could reticulate...
     Here, you can have your splines back.
 
-<div class="alert alert-error">
-Note - don't do this unless you have a very good reason, it has performance and code smell issues
-</div>
 
+<div class="alert alert-error">Note - don't do this unless you have a very good reason, it has performance and code smell issues</div>
 
-There are of course many other features that can grant Scala a "it rocks" attribute, which deserve a separate post.
+There are of course many other features that make Scala "rock", which probably deserve a separate post.
