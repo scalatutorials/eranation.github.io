@@ -44,10 +44,10 @@ Here's a sample "posts list".
     {% endfor %}
 </div>
 
-<div>
+<!-- <div>
 {% include custom/followme %}
 </div>
-
+ -->
 
 <!-- <ul class="posts">
   {% for post in site.posts %}
