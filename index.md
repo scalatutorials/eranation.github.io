@@ -4,6 +4,7 @@ layout: page
 #tagline: Recent Posts
 ---
 {% include JB/setup %}
+
 <!-- 
 Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
 
@@ -59,11 +60,15 @@ Here's a sample "posts list".
   </p>
 </div>
 
-<div>{% include custom/followme %}</div>
+<div>{% include custom/followme %}  <iframe src="http://ghbtns.com/github-btn.html?user=scalatutorials&type=follow"
+  allowtransparency="true" frameborder="0" scrolling="0" width="160" height="20"></iframe></div>
 <br>
 
 <iframe src="http://www.scalakata.com/51e610a4e4b0d23dc07a870b" width="100%" height="550" scrolling="no" frameborder="no"></iframe>
 (Powered by <a href="http://www.scalakata.com/">scalakata.com</a>)
+
+<br>
+
 
 
  
@@ -88,5 +93,4 @@ Here's a sample "posts list".
 </ul>
  -->
 
-
-
+{% include other-tutorials.md %}
