@@ -17,9 +17,5 @@ then run
 
     jekyll serve -w
 
-and go to 
-
-    localhost:4000
-    
-to preview
+and go to [http://localhost:4000](http://localhost:4000) to preview
 
