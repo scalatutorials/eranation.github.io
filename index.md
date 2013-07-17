@@ -34,8 +34,9 @@ Here's a sample "posts list".
  -->
 
 
+ 
 <div>
-    {% for post in site.posts limit 4 %}
+    {% for post in site.posts limit:1 %}
     <h2><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h2>
     <strong>{{ post.date | date_to_string }}</strong><br><br>
         {{ post.content }}<br>
