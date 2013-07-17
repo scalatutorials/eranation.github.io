@@ -58,7 +58,8 @@ Here's a sample "posts list".
   </p>
 </div>
 
-
+<iframe src="http://www.scalakata.com/51e610a4e4b0d23dc07a870b" width="100%" height="550" scrolling="no" frameborder="no"></iframe>
+(Powered by <a href="http://www.scalakata.com/">scalakata.com/</a>)
 
 
  
