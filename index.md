@@ -50,6 +50,7 @@ Here's a sample "posts list".
       <label for="mce-EMAIL">Please sign up to stay tuned when the site launches!</label>
       <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
       <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary btn-large"></div>
+
     </form>
     </div>
 
@@ -58,8 +59,11 @@ Here's a sample "posts list".
   </p>
 </div>
 
+<div>{% include custom/followme %}</div>
+<br>
+
 <iframe src="http://www.scalakata.com/51e610a4e4b0d23dc07a870b" width="100%" height="550" scrolling="no" frameborder="no"></iframe>
-(Powered by <a href="http://www.scalakata.com/">scalakata.com/</a>)
+(Powered by <a href="http://www.scalakata.com/">scalakata.com</a>)
 
 
  
@@ -73,7 +77,7 @@ Here's a sample "posts list".
 </div>
  -->
 <!-- <div>
-{% include custom/followme %}
+
 </div>
  -->
 
