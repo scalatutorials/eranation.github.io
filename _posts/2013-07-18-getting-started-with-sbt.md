@@ -33,7 +33,8 @@ Get started with a simple real world structure for a simple Scala project
 7. Type `sbt run` to comple + run the project (Should print "Hi!" to the console)
 7. Type `sbt ~compile` to have the project continually compile when files change
 
-Or, <i class="icon-download-alt"></i> [download](/assets/files/scala-simple-sbt.zip) this project skeleton as a zip file
+
+<a class="btn btn-small btn-primary" href="/assets/files/scala-simple-sbt.zip"><i class="icon-download"></i> Download</a> this project skeleton as a zip file
 
 ## Setup using giter8
 
