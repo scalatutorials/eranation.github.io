@@ -10,20 +10,42 @@ tags: [scala, sbt, giter8]
 
 Get started with a simple real world structure for a simple Scala project
 
-## Basic setup 
+## Manual setup 
+
+1. Install sbt from [here](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html#installing-sbt)
+2. Create a new folder for your project, e.g.: `mkdir myProject` and `cd myProject`
+3. Create the project folder structure: `mkdir -p src/main/scala` (Mac/Linux) or `mkdir src\main\scala` (Windows)
+4. Create a file in `src/main/scala` e.g. 
+
+   `echo 'object Hi { def main(args: Array[String]) = println("Hi!") }' > hw.scala` (Mac/Linux) 
+
+   or
+   
+   `echo object Hi { def main(args: Array[String]) = println("Hi!") } > hw.scala` (Windows)   
+5. To allow managing dependencies, project name, Scala version etc, create a file named `build.sbt` in your project root (e.g. in `myProject/build.sbt`)  for example: 
+  ```
+  name := "hello"
+  
+  version := "1.0"
+  
+  scalaVersion := "2.10.2"
+  ```
+7. Type `sbt run` to comple + run the project (Should print "Hi!" to the console)
+7. Type `sbt ~compile` to have the project continually compile when files change
+
+## Setup using giter8
 
 (All of the following have instructions for Windows / Mac / Linux)
 
-1. Install Scala from [here](http://www.scala-lang.org/downloads) 
+1. Install Scala from [here](http://www.scala-lang.org/downloads) (Optional, sbt will install scala for you)
 1. Install sbt from [here](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html#installing-sbt)
 2. Install conscript from [here](https://github.com/n8han/conscript)
 3. Install giter8: `cs n8han/giter8` 
 4. Create a new folder for your project: `mkdir myProject` and `cd myProject`
 5. Use a templated project, e.g.: `g8 typesafehub/scala-sbt`
 6. Answer the interactive prompt questions (use default options)
-6. CD to it `cd myProject\scala-project`
-7. Compile it `sbt compile`
-8. Run `sbt run` (should print `Hello, Scala Project`)
+6. cd to it `cd myProject\scala-project`
+8. Run `sbt run` (should compile, then print `Hello, Scala Project`)
 
 ## IDE support (Eclipse / Intellij)
 
