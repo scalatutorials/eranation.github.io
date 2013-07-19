@@ -23,6 +23,7 @@ Get started with a simple real world structure for a simple Scala project
    
    `echo object Hi { def main(args: Array[String]) = println("Hi!") } > hw.scala` (Windows)   
 5. To allow managing dependencies, project name, Scala version etc, create a file named `build.sbt` in your project root (e.g. in `myProject/build.sbt`)  for example: 
+
   ```
   name := "hello"
   
@@ -30,6 +31,7 @@ Get started with a simple real world structure for a simple Scala project
   
   scalaVersion := "2.10.2"
   ```
+
 7. Type `sbt run` to comple + run the project (Should print "Hi!" to the console)
 7. Type `sbt ~compile` to have the project continually compile when files change
 
