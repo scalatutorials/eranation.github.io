@@ -14,14 +14,12 @@ Get started with a simple real world structure for a simple Scala project
 
 1. Install sbt from [here](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html#installing-sbt)
 2. Create a new folder for your project, e.g.: `mkdir myProject` and `cd myProject`
-3. Create the project folder structure: `mkdir -p src/main/scala` (Mac/Linux) or `mkdir src\main\scala` (Windows)
+3. Create the project folder structure: 
+   - `mkdir -p src/main/scala` (Mac/Linux) 
+   - `mkdir src\main\scala` (Windows)
 4. Create a file in `src/main/scala` e.g. 
-
-   `echo 'object Hi { def main(args: Array[String]) = println("Hi!") }' > hw.scala` (Mac/Linux) 
-
-   or
-   
-   `echo object Hi { def main(args: Array[String]) = println("Hi!") } > hw.scala` (Windows)   
+   - `echo 'object Hi { def main(args: Array[String]) = println("Hi!") }' > hw.scala` (Mac/Linux) 
+   - `echo object Hi { def main(args: Array[String]) = println("Hi!") } > hw.scala` (Windows)   
 5. To allow managing dependencies, project name, Scala version etc, create a file named `build.sbt` in your project root (e.g. in `myProject/build.sbt`)  for example: 
 
   ```
