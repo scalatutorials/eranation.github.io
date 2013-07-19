@@ -34,7 +34,7 @@ Get started with a simple real world structure for a simple Scala project
 7. Type `sbt ~compile` to have the project continually compile when files change
 
 
-<a class="btn btn-small btn-primary" href="/assets/files/scala-simple-sbt.zip"><i class="icon-download"></i> Download</a> this project skeleton as a zip file
+<a class="btn btn-primary" href="/assets/files/scala-simple-sbt.zip"><i class="icon-download icon-white"></i> Download</a> this project skeleton as a zip file
 
 ## Setup using giter8
 
