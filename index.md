@@ -1,5 +1,6 @@
 ---
 layout: page
+description: "Guides and tutorials for the Scala programming language"
 #title: Coming soon
 #tagline: Recent Posts
 ---
