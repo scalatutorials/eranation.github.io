@@ -95,6 +95,24 @@
         font-size: 20px;
         line-height: 22px;
       }
+      .credits a{
+        color: white;
+        text-decoration: underline;
+      }
+      .credits {
+        font-size: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0;
+        color: white;
+        opacity: 0.5;
+        margin-left:20px;
+        {% if page.showFooter == true %}
+        margin-bottom:32px;
+        {% endif %}  
+      }
     </style>
   </head>
   <body>
@@ -122,8 +140,18 @@
               </ul>
               </div>
             {% endif %}
+            <hr>
+            <div class="alert alert-error">
+              <strong><i class="icon icon-warning-sign"></i> Note:</strong>
+              This is an alpha, incomplete, draft, work in progress effort.
+              <br>
+              To suggest / comment / contribute please either: fork this <a href="https://github.com/scalatutorials/scalatutorials.github.io/tree/master/tour" target="_blank">repository</a> and send a pull request, or fork the <a href="https://gist.github.com/scalatutorials/6054651" target="_blank">gist</a> that holds the steps for this tour and add your suggestions. You can always open an issue <a href="https://github.com/scalatutorials/scalatutorials.github.io/issues" target="_blank">here</a>
+
+            </div>
                 
           </div>
+          <small class="credits">Code editor is using <a href="http://scalakata.com" target="_blank">Scalakata.com</a> written by <a href="https://github.com/MasseGuillaume" target="_blank">Guillaume Massé</a><!--  | tour by Guillaume, <a href="https://github.com/eranation" target="_blank">Eran Medan</a> and others -->
+          </small>
            <ul class="pager bottom-right">
               {% if page.pageNumber > 1 %}
               <li>
