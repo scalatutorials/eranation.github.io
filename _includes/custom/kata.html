@@ -1,0 +1,24 @@
+  <div id="main">
+        <form class="kata-form" action="http://www.scalakata.com/api/scala" target="_blank" method="post">
+    <div class="kata-code-wrap">
+        <textarea autofocus="" name="code" class="kata-code" style="display:none">{{page.code}}</textarea>
+        <div class="kata-controls">
+            <button value="Run" name="run" type="submit" class="btn btn-success">
+                <i class="icon-play icon-white"></i>
+            </button>
+        </div>
+    </div>
+    <div class="kata-result-window">
+        <hr class="kata-vertical-resize-handle">
+        <div class="CodeMirror">
+            <!-- <div class="CodeMirror-scroll cm-s-solarized cm-s-dark"> -->
+            <div class="CodeMirror-scroll cm-s-monokai">
+                <pre class="kata-console"></pre>
+                <pre class="kata-result"></pre>
+            </div>
+        </div>
+    </div>
+    
+</form>
+    </div>
+   

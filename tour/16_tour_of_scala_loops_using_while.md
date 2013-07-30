@@ -1,13 +1,24 @@
 ---
 layout: tour
 title: "Loops using while"
-#description: ""
-pageNumber: 14
-scalakata: http://www.scalakata.com/51ed7944e4b0d23dc07a8ef6
+description: "Scala language tour"
+pageNumber: 16
 isLast: false
-category: Tour
+group: tour
+nextPage: 17_tour_of_scala_loops_using_for.html
+prevPage: 15_tour_of_scala_assign_multiple_variables.html
+links:
 
-#tags: [scala]
+code:
+  |
+  //Loops using while  
+  
+  var i, sum = 0  
+  while ( i < 10) {  
+    sum += i  
+    i+=1  
+  }  
+  println(sum)  
 ---
 
 Scala doesn't have a "classic" equivalent to the imperative for loop construct that exists in c, Java, etc. For imperative "for" like loops, use `while`.

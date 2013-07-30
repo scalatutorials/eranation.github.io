@@ -1,0 +1,17 @@
+---
+layout: page
+title: Tour of Scala
+description: "Tour TOC"
+tagline: Table of Content
+group: other
+permalink: "toc.html"
+---
+{% include JB/setup %}
+
+<ol>
+{% for node in site.pages |  sort:"name" %}
+	{% if node.title != null and node.group == "tour" %}
+    	<li><a href="{{ BASE_PATH }}{{node.url}}" class="active">{{node.title}}</a></li>
+	{% endif %}
+{% endfor %}
+<ol>

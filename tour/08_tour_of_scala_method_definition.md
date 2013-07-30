@@ -1,13 +1,20 @@
 ---
 layout: tour
 title: "Method definition"
-#description: ""
+description: "Scala language tour"
 pageNumber: 8
-scalakata: http://www.scalakata.com/51ed8026e4b0d23dc07a8f58
 isLast: false
-category: Tour
+group: tour
+nextPage: 09_tour_of_scala_method_definition_2.html
+prevPage: 07_tour_of_scala_string_formatting.html
+links:
 
-#tags: [scala]
+code:
+  |
+  def add(x:Int, y:Int):Int = {  
+    return x + y  
+  }  
+  println(add(42,13))  
 ---
 
 - In Scala methods are defined using `def` 

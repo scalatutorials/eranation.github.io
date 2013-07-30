@@ -16,9 +16,14 @@
 
     <!-- Le styles -->
 <!--     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
- -->    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ --><link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/monokai.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/theme/monokai.css">
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/css/kata.css">
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/css/full-kata.css">
+<!--     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/lib/codemirror.css">
 
 
     <!-- Le fav and touch icons -->
@@ -34,6 +39,7 @@
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
     <style>
+
       .bottom-right{
         position: absolute;
         bottom: 0;
@@ -61,6 +67,9 @@
         margin-bottom:60px;
         {% endif %}        
 
+      }
+      .navbar {
+        min-width: 600px;
       }
       #workspace {
         position: absolute;
@@ -92,8 +101,8 @@
         font-size: 15px;
       }
       .badge {
-        font-size: 20px;
-        line-height: 22px;
+        font-size: 31px;
+        line-height: 26px;
       }
       .credits a{
         color: white;
@@ -109,6 +118,7 @@
         color: white;
         opacity: 0.5;
         margin-left:20px;
+        z-index: 3;
         {% if page.showFooter == true %}
         margin-bottom:32px;
         {% endif %}  
@@ -120,11 +130,14 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span8">
-          <div id="workspace" class="span8"><iframe src="{{ page.scalakata }}" frameborder="0" width="100%" height="100%" style="width:100%;height:100%" scrolling="no"></iframe></div>
+          <div id="workspace" class="span8">
+            <!-- <iframe src="{{ page.scalakata }}" frameborder="0" width="100%" height="100%" style="width:100%;height:100%" scrolling="no"></iframe> -->
+            {% include custom/kata.html %}
+          </div>
         </div>
         <div class="span4" >
           <div class="span4" id="content">
-            <h2>{{ page.title }} <span class="badge pull-right">{{ page.pageNumber }}</span></h2>
+            <h2><span class="badge">{{ page.pageNumber }}</span> {{ page.title }}</h2>
             {% if page.lead %}
             <p class="lead">{{ page.lead }}</p>
             {% endif %}
@@ -145,7 +158,7 @@
               <strong><i class="icon icon-warning-sign"></i> Note:</strong>
               This is an alpha, incomplete, draft, work in progress effort.
               <br>
-              To suggest / comment / contribute please either: fork this <a href="https://github.com/scalatutorials/scalatutorials.github.io/tree/master/tour" target="_blank">repository</a> and send a pull request, or fork the <a href="https://gist.github.com/scalatutorials/6054651" target="_blank">gist</a> that holds the steps for this tour and add your suggestions. You can always open an issue <a href="https://github.com/scalatutorials/scalatutorials.github.io/issues" target="_blank">here</a>
+              To report errors, comment or contribute please <a href="https://github.com/scalatutorials/scalatutorials.github.io/issues" target="_blank">open an issue</a>
 
             </div>
                 
@@ -153,14 +166,17 @@
           <small class="credits">Code editor is using <a href="http://scalakata.com" target="_blank">Scalakata.com</a> written by <a href="https://github.com/MasseGuillaume" target="_blank">Guillaume Massé</a><!--  | tour by Guillaume, <a href="https://github.com/eranation" target="_blank">Eran Medan</a> and others -->
           </small>
            <ul class="pager bottom-right">
+              <li>
+                <a href="toc.html">TOC</a>
+              </li>
               {% if page.pageNumber > 1 %}
               <li>
-                <a href="tour-of-scala{{ page.pageNumber | minus:1}}.html">&#9664; Prev</a>
+                <a href="{{page.prevPage}}">&#9664; Prev</a>
               </li>
               {% endif %}
               {% if page.isLast != true %}
               <li>
-                <a class="btn-primary" href="tour-of-scala{{ page.pageNumber | plus:1}}.html">Next &#9654;</a>
+                <a class="btn-primary" href="{{page.nextPage}}">Next &#9654;</a>
               </li>
               {% endif %}
             </ul>   
@@ -172,10 +188,19 @@
     {% include themes/twitter/footer.html %}
     {% endif %}
     {% include JB/analytics %}
-  <script>
-/*  $(document).ready(function(){
-    $("a[@href^='http']").attr('target','_blank');
-  }); */
-  </script>
+
+    <script src="{{ ASSET_PATH }}/scalakata/webjars/jquery.min.js" id="jquery"></script>
+    <script src="{{ ASSET_PATH }}/scalakata//webjars/codemirror.js"></script>
+    <script src="{{ ASSET_PATH }}/scalakata//webjars/clike.js"></script>
+    <script src="{{ ASSET_PATH }}/scalakata/js/kata.js"></script>
+
+
+    <script>
+        $(function(){
+            //$("textarea").val("1+1\n3+3");
+            $(".kata-form").openkata({pushState: false});
+        });
+
+    </script>
   </body>
 </html>

@@ -1,12 +1,20 @@
 ---
 layout: tour
 title: "Final Variables"
-description: "Final variables are declared using the val keyword"
+description: "Scala language tour"
 pageNumber: 4
-scalakata: http://www.scalakata.com/51ed7f4be4b0d23dc07a8f50
 isLast: false
-category: Tour
-#tags: [scala]
+group: tour
+nextPage: 05_tour_of_scala_printing_values.html
+prevPage: 03_tour_of_scala_variables.html
+links:
+
+code:
+  |
+  val x = 1 + 2 //val instead of var  
+  println(x)  
+  x = 3 * 4 //error: reassignment to val  
+  println(x)  
 ---
 
 Final variables are declared using the `val` keyword (a final variable is a variable that can't be reassigned)
@@ -22,5 +30,5 @@ Edit the code on the left, so it will run (either change the <code>val</code> ba
 </div>
 
 <div class="alert alert-warn">
-<strong>Note:</strong> Prefer using `val` over `var` (and immutable objects over mutalbe ones). There are many benefits that are out of the scope of this small tour.
+<strong>Note:</strong> Prefer using `val` over `var` (and immutable objects over mutable ones). There are many benefits that are out of the scope of this small tour.
 </div>

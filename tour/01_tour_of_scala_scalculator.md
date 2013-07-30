@@ -4,7 +4,7 @@ title: "Scalculator"
 description: "Scala language tour"
 pageNumber: 1
 isLast: false
-group: hidden
+group: tour
 nextPage: 02_tour_of_scala_operators_are_methods.html
 prevPage: 
 links:
