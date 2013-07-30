@@ -35,6 +35,8 @@ When you don't need the samples anymore just delete the `_posts/core-samples` fo
 Here's a sample "posts list".
  -->
 
+<div class="alert alert-info">NEW: Try the alpha interactive Tour of Scala <a href="tour/" class="btn btn-success btn-small">Give it a try</a> (Work in progress, feedback welcome)</div>
+
 <div class="hero-unit">
   <h1>Coming Soon</h1>
   <p>
