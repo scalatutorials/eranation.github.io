@@ -111,7 +111,8 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
             }
             function renderFail(data) {
                 $console.text("");
-                $result.text(data.error);
+                if(data)
+                    $result.text(data.error);
             }
             function renderAlways() {
                $(form).addClass("with-results");
