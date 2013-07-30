@@ -165,7 +165,7 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
                 fail(function(data){
                     if(curAttempt++ < maxAttempts) {
                         //alert("trying again");
-                        setTimeout(ajaxCall, 10);
+                        setTimeout(ajaxCall, 2);
                     } else {
                         var result;
                         result = data.responseJSON;
