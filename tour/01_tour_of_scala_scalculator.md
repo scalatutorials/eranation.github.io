@@ -16,7 +16,7 @@ code:
 
 Let's start with some basic arithmetic operations.
 
-Just like most languages, simple arithmetic operations work as expected.
+Just like most languages, simple arithmetic operations are part of the language.
 
 Play with the editor on the left, type things like
 

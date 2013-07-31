@@ -20,6 +20,8 @@
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/monokai.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/theme/monokai.css">
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/theme/solarized.css">
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/theme/eclipse.css">
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/css/kata.css">
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/css/full-kata.css">
 <!--     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/css/bootstrap.min.css"> -->
@@ -50,6 +52,7 @@
         margin-bottom:10px;
         {% endif %}        
         margin-right: 10px;
+        margin-top: 10px;
 
       }
       #content {
@@ -100,24 +103,27 @@
       code, pre {
         font-size: 15px;
       }
-      .badge {
+      .page-num {
         font-size: 31px;
         line-height: 26px;
+      }
+      .page-num.badge-success {
+        cursor: pointer;
       }
       .credits a{
         color: white;
         text-decoration: underline;
       }
       .credits {
+        background-color: black;
         font-size: 10px;
         position: absolute;
         bottom: 0;
-        left: 0;
         right: 0;
-        padding: 0;
+        padding: 5px;
         color: white;
         opacity: 0.5;
-        margin-left:20px;
+        margin: 10px;
         z-index: 3;
         {% if page.showFooter == true %}
         margin-bottom:32px;
@@ -137,11 +143,11 @@
         </div>
         <div class="span4" >
           <div class="span4" id="content">
-            <h2><span class="badge">{{ page.pageNumber }}</span> {{ page.title }}</h2>
+            <h2><span class="badge page-num">{{ page.pageNumber }}</span> {{ page.title }}</h2>
             {% if page.lead %}
             <p class="lead">{{ page.lead }}</p>
             {% endif %}
-            <p>{{ content }}</p>
+            <div>{{ content }}</div>
             {% if page.links %}
               <hr>
               <div>
@@ -159,29 +165,43 @@
               This is an alpha, incomplete, draft, work in progress effort.
               <br>
               To report errors, comment or contribute please <a href="https://github.com/scalatutorials/scalatutorials.github.io/issues" target="_blank">open an issue</a>
-
             </div>
                 
           </div>
-          <small class="credits">Code editor is using <a href="http://scalakata.com" target="_blank">Scalakata.com</a> written by <a href="https://github.com/MasseGuillaume" target="_blank">Guillaume Massé</a><!--  | tour by Guillaume, <a href="https://github.com/eranation" target="_blank">Eran Medan</a> and others -->
-          </small>
-           <ul class="pager bottom-right">
-<!--          <li>
-                <a href="toc.html">TOC</a>
-              </li>-->
-              {% if page.pageNumber > 1 %}
-              <li>
-                <a href="{{page.prevPage}}">&#9664; Prev</a>
-              </li>
-              {% endif %}
-              {% if page.isLast != true %}
-              <li>
-                <a class="btn-primary" href="{{page.nextPage}}">Next &#9654;</a>
-              </li>
-              {% endif %}
-            </ul>   
+           <div class="bottom-right">
+              <ul class="pager">
+                <li>
+                <a id="toc" href="#">TOC</a>
+                </li>
+                {% if page.pageNumber > 1 %}
+                <li>
+                  <a href="{{page.prevPage}}">&#9664; Prev</a>
+                </li>
+                {% endif %}
+                {% if page.isLast != true %}
+                <li>
+                  <a class="btn-primary" href="{{page.nextPage}}">Next &#9654;</a>
+                </li>
+                {% endif %}
+              </ul>   
+           </div>
         </div>
 
+      </div>
+    </div>
+    <!-- Modal -->
+    <div id="tocModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Table of Contents</h3>
+      </div>
+      <div class="modal-body">
+        <ul id="tocList">
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <!-- <button class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
     {% if page.showFooter == true %}
@@ -190,16 +210,97 @@
     {% include JB/analytics %}
 
     <script src="{{ ASSET_PATH }}/scalakata/webjars/jquery.min.js" id="jquery"></script>
-    <script src="{{ ASSET_PATH }}/scalakata//webjars/codemirror.js"></script>
-    <script src="{{ ASSET_PATH }}/scalakata//webjars/clike.js"></script>
+    <script src="{{ ASSET_PATH }}/scalakata/webjars/codemirror.js"></script>
+    <script src="{{ ASSET_PATH }}/scalakata/webjars/clike.js"></script>
     <script src="{{ ASSET_PATH }}/scalakata/js/kata.js"></script>
+    <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
 
 
     <script>
+//TODO: 
+//1) move to external JS file
+//2) JSLint
+//3) "complete" will be checked only when pressing "next"
+//4) move to AngularJS, or better handle evnents...
+//5) persist on server, not just local storage (unique link?)
+
         $(function(){
-            //$("textarea").val("1+1\n3+3");
-            $(".kata-form").openkata({pushState: false});
+          $(".kata-form").openkata({pushState: false});
+          $(".theme-select a").click(function() {
+            var value = $(this).data("value");
+            selectTheme(value)
+          });
+
+          if(localStorage) {
+            var theme = localStorage.getItem("theme");
+            if(theme) {
+              selectTheme(theme);
+            }
+
+            var visited = JSON.parse(localStorage.getItem("visited"));
+            if (visited &&  visited[location.pathname]) {
+              $(".page-num").addClass("badge-success")
+              .attr("title","click to unmark as complete")
+              .click(function () {
+                $(this).removeClass("badge-success").attr("title","");
+                delete visited[location.pathname];
+                localStorage.setItem("visited", JSON.stringify(visited));
+              });
+            } else {
+              setTimeout(function() {
+                if(!visited) {
+                  visited = {};
+                }
+                visited[location.pathname] = true;
+                localStorage.setItem("visited", JSON.stringify(visited));
+              }, 5*1000); //mark page as visited after 5 seconds
+            }
+          }
+
+          $("#toc").click(function() {
+            $.getJSON("toc.json", function (data) {
+              var tocList = $("#tocList");
+              tocList.empty();
+              $.each(data, function (index, value) {
+                var link = $("<a>", {href:value.url}).text(value.title);
+                var li = $("<li>").append(link);
+                tocList.append(li);
+                
+                if(localStorage) {
+                  var url = "/tour/" + value.url;
+                  var visited = JSON.parse(localStorage.getItem("visited"));
+                  if(visited && visited[url]) {
+                    var tick = $("<i>", {"class":"icon icon-ok", title:"click to unmark as complete", "style":"cursor: pointer;"});
+
+                    (function (url) {
+                      tick.click (function () {
+                        delete visited[url];
+                        localStorage.setItem("visited", JSON.stringify(visited));
+                        if(url == location.pathname) {
+                          $(".page-num").removeClass("badge-success").attr("title",""); //OK, time to AngularJS!
+                        }
+                        $(this).remove();
+                      });
+                    }(url));
+                    li.append(tick);
+                  }
+                }
+                
+              });
+              $("#tocModal").modal();
+            })
+          });
+
         });
+
+        function selectTheme(theme) {
+          $(".kata-code").data("editor").setOption("theme", theme);
+          if(localStorage) {
+            localStorage.setItem("theme", theme);
+          }
+        }
+
+
 
     </script>
   </body>

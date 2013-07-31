@@ -9,9 +9,25 @@ permalink: "toc.html"
 {% include JB/setup %}
 
 <ol>
-{% for node in site.pages | sort:"name" %}
-	{% if node.title != null and node.group == "tour" %}
-    	<li><a href="{{ BASE_PATH }}{{node.url}}" class="active">{{node.title}}</a></li>
-	{% endif %}
-{% endfor %}
+  <li><a href="{{ BASE_PATH }}01_tour_of_scala_scalculator.html" class="active">Scalculator</a></li>
+  <li><a href="{{ BASE_PATH }}02_tour_of_scala_operators_are_methods.html" class="active">Operators are methods</a></li>
+  <li><a href="{{ BASE_PATH }}03_tour_of_scala_variables.html" class="active">Variables</a></li>
+  <li><a href="{{ BASE_PATH }}04_tour_of_scala_final_variables.html" class="active">Final Variables</a></li>
+  <li><a href="{{ BASE_PATH }}05_tour_of_scala_printing_values.html" class="active">Printing values</a></li>
+  <li><a href="{{ BASE_PATH }}06_tour_of_scala_string_interpolation.html" class="active">String interpolation</a></li>
+  <li><a href="{{ BASE_PATH }}07_tour_of_scala_string_formatting.html" class="active">String formatting</a></li>
+  <li><a href="{{ BASE_PATH }}08_tour_of_scala_method_definition.html" class="active">Method definition</a></li>
+  <li><a href="{{ BASE_PATH }}09_tour_of_scala_method_definition_2.html" class="active">Method definition 2</a></li>
+  <li><a href="{{ BASE_PATH }}10_tour_of_scala_method_definition_3.html" class="active">Method definition 3</a></li>
+  <li><a href="{{ BASE_PATH }}11_tour_of_scala_anonymous_functions.html" class="active">Anonymous Functions</a></li>
+  <li><a href="{{ BASE_PATH }}12_tour_of_scala_anonymous_functions_2.html" class="active">Anonymous Functions 2</a></li>
+  <li><a href="{{ BASE_PATH }}13_tour_of_scala_return_multiple_variables.html" class="active">Return multiple variables</a></li>
+  <li><a href="{{ BASE_PATH }}14_tour_of_scala_declare_multiple_variables.html" class="active">Declare multiple variables</a></li>
+  <li><a href="{{ BASE_PATH }}15_tour_of_scala_assign_multiple_variables.html" class="active">Assign multiple variables</a></li>
+  <li><a href="{{ BASE_PATH }}16_tour_of_scala_loops_using_while.html" class="active">Loops using while</a></li>
+  <li><a href="{{ BASE_PATH }}17_tour_of_scala_loops_using_for.html" class="active">Loops using for</a></li>
+  <li><a href="{{ BASE_PATH }}18_tour_of_scala_loops_without_loops.html" class="active">Loops without loops</a></li>
+  <li><a href="{{ BASE_PATH }}19_tour_of_scala_conditions.html" class="active">Conditions</a></li>
+  <li><a href="{{ BASE_PATH }}20_tour_of_scala_basic_pattern_matching.html" class="active">Basic Pattern Matching</a></li>
+  <li><a href="{{ BASE_PATH }}21_tour_of_scala_lists.html" class="active">Lists</a></li>
 <ol>

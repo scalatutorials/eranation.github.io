@@ -33,6 +33,7 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
             mode: "text/x-" + lang
         });
         mirror = CodeMirror.fromTextArea(this,options);
+        $(this).data("editor", mirror);
         $(form).find(".kata-test").each(function(){
             delete options.autofocus;
             testMirror = CodeMirror.fromTextArea(this,options);
