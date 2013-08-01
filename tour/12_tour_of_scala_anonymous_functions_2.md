@@ -16,10 +16,10 @@ code:
   val add3:(Int,Int)=>Int = _ + _ //alternate way  
   val add4 = (_ + _):(Int,Int)=>Int //alternate way, rare   
       
-  println(add0(42,13))  
   println(add1(42,13))  
   println(add2(42,13))  
   println(add3(42,13))  
+  println(add4(42,13))  
   
 ---
 
