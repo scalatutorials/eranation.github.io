@@ -5,7 +5,7 @@ description: "Scala language tour"
 pageNumber: 26
 isLast: false
 group: tour
-nextPage: 27_tour_of_scala_want_more.html
+nextPage: 27_tour_of_scala_work_in_progress.html
 prevPage: 25_tour_of_scala_collections__accessing_elements.html
 links:
 - text: "::: vs ++"
