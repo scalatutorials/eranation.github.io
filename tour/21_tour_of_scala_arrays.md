@@ -13,7 +13,7 @@ links:
 code:
   |
   val array1 = Array(1, 2, 3) //Mutable array of type Array[Int]  
-  val array2 Array("a", 2, true) //Mutable array of type Array[Any]  
+  val array2 = Array("a", 2, true) //Mutable array of type Array[Any]  
   
   println(array1.mkString(","))  
 ---
