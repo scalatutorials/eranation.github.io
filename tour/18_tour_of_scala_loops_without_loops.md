@@ -5,7 +5,7 @@ description: "Scala language tour"
 pageNumber: 18
 isLast: false
 group: tour
-nextPage: 19_tour_of_scala_conditions.html
+nextPage: 19_tour_of_scala_if.html
 prevPage: 17_tour_of_scala_loops_using_for.html
 links:
 

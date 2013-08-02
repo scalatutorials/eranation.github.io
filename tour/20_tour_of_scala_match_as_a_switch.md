@@ -1,12 +1,12 @@
 ---
 layout: tour
-title: "Basic Pattern Matching"
+title: "Match as a Switch"
 description: "Scala language tour"
 pageNumber: 20
 isLast: false
 group: tour
 nextPage: 21_tour_of_scala_arrays.html
-prevPage: 19_tour_of_scala_conditions.html
+prevPage: 19_tour_of_scala_if.html
 links:
 - text: More on pattern mathing
   url: http://www.scala-lang.org/node/120

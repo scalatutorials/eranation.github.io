@@ -263,7 +263,7 @@
               tocList.empty();
               $.each(data, function (index, value) {
                 var link = $("<a>", {href:value.url}).text(value.title);
-                var li = $("<li>").append(link);
+                var li = $("<li>").append(link).append(" (" + value.topic + ")");
                 tocList.append(li);
                 
                 if(localStorage) {
