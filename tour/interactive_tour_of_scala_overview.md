@@ -71,6 +71,7 @@ code:
   def addNumbers(x:Int)(y:Int) = x + y  
   def add2 = addNumbers(2)_  
   add2(3)   
+  
   //easy interfaces / mixins     
   trait Namable { val name:String; def greet:String = s"Hi $name!"}   
   
