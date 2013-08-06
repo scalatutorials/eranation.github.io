@@ -31,8 +31,11 @@
 
 ## Online REPLs 
 
-- [Simply Scala](http://www.simplyscala.com/)
 - [Scalakata](http://www.scalakata.com/)
+- [Scala Tour](http://www.scala-tour.com/)
+- [Simply Scala](http://www.simplyscala.com/)
+
+
 
 ## Videos
 
