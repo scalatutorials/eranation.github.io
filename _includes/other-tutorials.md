@@ -18,6 +18,7 @@
 
 - [Official documentation](http://docs.scala-lang.org/tutorials/)
 - [Twitter's Scala School](http://twitter.github.io/scala_school/)
+- [Scala Tour](http://www.scala-tour.com/)
 - [Learning Scala](http://www.scala-lang.org/node/1305)
 
 ## Courses 
@@ -32,7 +33,6 @@
 ## Online REPLs 
 
 - [Scalakata](http://www.scalakata.com/)
-- [Scala Tour](http://www.scala-tour.com/)
 - [Simply Scala](http://www.simplyscala.com/)
 
 
