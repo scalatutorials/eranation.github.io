@@ -61,6 +61,16 @@ code:
   put " anything  you like in here except three consecutive " :)     
   """    
   
+  //default values for parameters   
+  def lotsOfParams(num:Int = 10, str:String = "N/A") = str * num  
+  
+  //named parameters  
+  lotsOfParams(str = "wat")  
+  
+  //partial functions   
+  def addNumbers(x:Int)(y:Int) = x + y  
+  def add2 = addNumbers(2)_  
+  add2(3)   
   //easy interfaces / mixins     
   trait Namable { val name:String; def greet:String = s"Hi $name!"}   
   
@@ -88,14 +98,13 @@ code:
   //everything is an expression #2    
   val condition = if(person.name == "Alice") "Hi Alice!" else "Superman?"     
   
-  //Pimp my libarary     
+  //Pimp my library     
   implicit class SuperInt(val i:Int) {      
     def square = i * i     
     def sqrt = math.sqrt(i)    
   }     
   
-  7.square     
-  49.sqrt     
+  println(7.square, 49.sqrt)  
   
   //Duck typing     
   def quackTheDuck( quackable: {def quack:String }) = {  
@@ -125,6 +134,6 @@ code:
 
 - Scala is a statically typed, object oriented functional language, merging two popular programming approches into one
 - Built by Martin Odersky at EPFL, launched in 2003, open source
-- Used by Twitter, Linked In, Yammer, Foursquare, OpenStudy, eBay, Amazon and many many others
+- Used by Twitter, Linked In, Yammer, Foursquare, OpenStudy, eBay, Amazon and many others
 - It runs on the JVM (had an experimental .NET CLR backend that was discontinued, and has an experimental LLVM compiler)
-- Therefore it has great interop with Java (and any other JVM language of course) 
+- Therefore it has great interop with Java (and any other JVM language) 
