@@ -91,3 +91,10 @@ kbd{
     padding:.1em .6em;
     text-shadow:0 1px 0 #fff;
 }
+
+.tweet-header {
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
