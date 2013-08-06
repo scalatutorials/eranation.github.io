@@ -1,7 +1,12 @@
   <div id="main">
         <form class="kata-form" action="http://www.scalakata.com/api/scala" target="_blank" method="post">
     <div class="kata-code-wrap">
-        <textarea autofocus="" name="code" class="kata-code" style="display:none">{{page.code}}</textarea>
+
+        <div class="kata-code" id="editor">
+{{page.code}}
+        </div>
+
+        <!--<textarea autofocus="" name="code" class="kata-code" style="display:none">{{page.code}}</textarea>-->
         <div class="kata-controls">
             <button value="Run" name="run" type="submit" class="btn btn-success">
                 <i class="icon-play icon-white"></i>

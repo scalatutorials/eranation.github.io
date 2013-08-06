@@ -8,12 +8,17 @@ html, body, #main,
     max-height: none;
 }
 
-.kata-form.with-results .kata-code-wrap {
+.kata-form.with-results .kata-code-wrap #editor {
     height: 70%;
 }
 
+
 .kata-form.with-results .kata-result-window {
-    height: 30%;
+    top: 70%;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 2
 }
 
 .kata-form textarea {

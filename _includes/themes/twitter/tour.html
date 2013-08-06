@@ -41,7 +41,19 @@
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
     <style>
-
+      #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+      .ace_gutter-active-line {
+        /*margin-top: 10px !important;*/
+      }
+      .ace_gutter, .ace_content {
+        /*padding-top: 10px !important;*/
+      }
       .bottom-right{
         position: absolute;
         bottom: 0;
@@ -214,7 +226,7 @@
     <script src="{{ ASSET_PATH }}/scalakata/webjars/clike.js"></script>
     <script src="{{ ASSET_PATH }}/scalakata/js/kata.js"></script>
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="{{ ASSET_PATH }}/scalakata/js/ace.js"></script>
 
     <script>
 //TODO: 
@@ -294,9 +306,9 @@
         });
 
         function selectTheme(theme) {
-          $(".kata-code").data("editor").setOption("theme", theme);
+          //$(".kata-code").data("editor").setOption("theme", theme);
           if(localStorage) {
-            localStorage.setItem("theme", theme);
+            //localStorage.setItem("theme", theme);
           }
         }
 

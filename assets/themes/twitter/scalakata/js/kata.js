@@ -4,7 +4,7 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
     var actionToMode, codeMirrorDefaults, form;
 
     form = this;
-    codeMirrorDefaults = {
+/*    codeMirrorDefaults = {
         lineNumbers: true,
         matchBrackets: true,
         indentWithTabs: false,
@@ -17,7 +17,7 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
         // theme:"solarized dark"
         theme:"monokai"
     }
-    codeMirrorOptions = $.extend(codeMirrorDefaults,codeMirrorOptions)
+    codeMirrorOptions = $.extend(codeMirrorDefaults,codeMirrorOptions)*/
 
     // Show once
     if($(this).hasClass("kataifyed")) return
@@ -32,12 +32,18 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
         options = $.extend(codeMirrorOptions,{
             mode: "text/x-" + lang
         });
-        mirror = CodeMirror.fromTextArea(this,options);
+
+        mirror = ace.edit("editor");
+        mirror.setTheme("ace/theme/monokai");
+        mirror.getSession().setMode("ace/mode/scala");
+        mirror.setFontSize("15px");
+
+
         $(this).data("editor", mirror);
-        $(form).find(".kata-test").each(function(){
-            delete options.autofocus;
-            testMirror = CodeMirror.fromTextArea(this,options);
-        });
+        // $(form).find(".kata-test").each(function(){
+        //     delete options.autofocus;
+        //     testMirror = CodeMirror.fromTextArea(this,options);
+        // });
         
         function runCode(){
             var $console, $result, $run, code, test;
@@ -91,10 +97,10 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
                             });
                         };
                         
-                        if(error.line < mirror.lineCount()) {
+                        if(error.line < mirror.getSession().getLength()) {
                             showError(error,mirror,true);
                         } else {
-                            error.line -= mirror.lineCount();
+                            error.line -= mirror.getSession().getLength();
                             showError(error,testMirror,false);
                         }
                         $errorMessage = $("<pre/>");
@@ -117,6 +123,7 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
             }
             function renderAlways() {
                $(form).addClass("with-results");
+               mirror.resize();
                $run.prop("disabled",false);
             }
 
@@ -137,6 +144,7 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
                         // intial state
                         mirror.setValue("");
                         $(form).removeClass("with-results");
+                        mirror.resize();
                     }
                 };
             }
