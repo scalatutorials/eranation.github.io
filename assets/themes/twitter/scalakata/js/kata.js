@@ -15,7 +15,8 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
         autoClearEmptyLines: true,
         firstLineNumber: 0,
         // theme:"solarized dark"
-        theme:"monokai"
+        //theme:"monokai"
+        theme:"eclipse"
     }
     codeMirrorOptions = $.extend(codeMirrorDefaults,codeMirrorOptions)
 

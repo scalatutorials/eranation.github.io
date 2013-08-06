@@ -4,7 +4,7 @@ title: "Overview"
 description: "Scala language tour"
 pageNumber: 1
 isLast: false
-group: hidden
+group: tour
 nextPage: interactive_tour_of_scala_scalculator.html
 prevPage: 
 links:
