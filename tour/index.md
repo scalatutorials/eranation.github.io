@@ -123,8 +123,8 @@ code:
   
 ---
 
-- Scala is an statically typed, object oriented functional language, merging two popular programming approches into one
+- Scala is a statically typed, object oriented functional language, merging two popular programming approches into one
 - Built by Martin Odersky at EPFL, launched in 2003, open source
 - Used by Twitter, Linked In, Yammer, Foursquare, OpenStudy, eBay, Amazon and many many others
-- It runs on the JVM (had an experimental .NET CLR backend, dropped, and has an experimental LLVM compiler)
-- Therefore has great interop with Java (and any other JVM language of course) 
+- It runs on the JVM (had an experimental .NET CLR backend that was discontinued, and has an experimental LLVM compiler)
+- Therefore it has great interop with Java (and any other JVM language of course) 
