@@ -20,7 +20,7 @@ code:
   //Lists are lists...      
   val list = List(1, 2, 3, 4 ,5)   
   
-  //maps are maps     
+  //Maps are maps     
   val map = Map(1 -> "one", 2 -> "two")   
   
   //`return` keyword is optional, so are {} on one liners  
@@ -29,13 +29,13 @@ code:
   //higher order functions  
   list.filter(_ > 2).map(_ * 3).sum   
   
-  //convinient string ops    
+  //convenient string ops    
   val strAsNum = "1000".toInt   
   
   //easy output (uses System.out.println)    
   println(strAsNum)   
   
-  //convinient number ops     
+  //convenient number ops     
   number = number.abs   
   
   //easy ranges     
@@ -44,7 +44,7 @@ code:
   //easy tuples    
   val tuple = ("Tuples are", 1, true, "awesome thing")   
   
-  //convinient collection ops     
+  //convenient collection ops     
   val tsil = list.reverse   
   
   //easy iterations    
