@@ -16,8 +16,9 @@
     <![endif]-->
 
     <!-- Le styles -->
-<!--     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
- --><link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/monokai.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/theme/monokai.css">
@@ -25,7 +26,6 @@
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/theme/eclipse.css">
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/css/kata.css">
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/css/full-kata.css">
-<!--     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{{ ASSET_PATH }}/scalakata/webjars/lib/codemirror.css">
 
 
@@ -43,52 +43,109 @@
 
     <style>
 
-      .bottom-right{
-        position: absolute;
-        bottom: 0;
-        right:0;
-        {% if page.showFooter == true %}
-        margin-bottom:42px;
-        {% else %}
-        margin-bottom:10px;
-        {% endif %}        
-        margin-right: 10px;
-        margin-top: 10px;
+      .navbar-inner {
+        position: relative;
+        z-index: 1000
 
       }
-      #content {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        margin-top:42px;
-        overflow: auto;
-        padding-right: 20px;
-        border: 0;
-        {% if page.showFooter == true %}
-        margin-bottom:82px;
-        {% else %}
-        margin-bottom:60px;
-        {% endif %}        
+      
+      @media (max-width: 767px) {
+        .brand {
+          font-size: 1.3em !important;
+        }
+        .navbar {
+          margin-bottom: 0 !important;
+        }
+        .bottom-right{
+          /*float: right;*/
+        }        
+        #content {
+          /*overflow: auto;
+          max-height: 300px;*/
 
+        }
+        #workspace {
+          /*max-height: 300px;
+          overflow: auto;
+          padding: 0;
+          border: 0;*/
+
+        }
+        /*.kata-theme {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }*/
+        .kata-form .CodeMirror {
+          border: 1px solid lightgray;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+
+        }
+        .credits, .kata-theme {
+          display: none;
+        }
+        
       }
-      .navbar {
-        min-width: 600px;
+
+      @media (min-width: 768px) {
+        .bottom-right{
+          position: absolute;
+          bottom: 0;
+          right:0;
+          margin-bottom:10px;
+          margin-right: 10px;
+          margin-top: 10px;
+        }        
+        #content {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          margin-top:42px;
+          overflow: auto;
+          padding-right: 20px;
+          border: 0;
+          margin-bottom:60px;
+
+        }
+        #workspace {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin-top:44px;
+          overflow: hidden;
+          padding: 0;
+          border: 0;
+        }
+        .credits a{
+          color: white;
+          text-decoration: underline;
+        }
+        .credits {
+          background-color: black;
+          font-size: 10px;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: 5px;
+          color: white;
+          opacity: 0.5;
+          margin: 10px 20px 10px 10px;
+          z-index: 3;
+          display: none;
+        }
+        .kata-theme {
+          z-index: 10000;
+          position: absolute;
+          bottom: 0;
+          left: 0;  
+          margin: 10px; 
+        }
       }
-      #workspace {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin-top:42px;
-        overflow: hidden;
-        padding: 0;
-        border: 0;
-        {% if page.showFooter == true %}
-        margin-bottom:32px;
-        {% endif %}        
-      }
+     
       footer {
         font-size: smaller;
         position: absolute;
@@ -111,37 +168,13 @@
       .page-num.badge-success {
         cursor: pointer;
       }
-      .credits a{
-        color: white;
-        text-decoration: underline;
-      }
-      .credits {
-        background-color: black;
-        font-size: 10px;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 5px;
-        color: white;
-        opacity: 0.5;
-        margin: 10px 20px 10px 10px;
-        z-index: 3;
-        {% if page.showFooter == true %}
-        margin-bottom:32px;
-        {% endif %}  
-      }
+      
     </style>
   </head>
   <body>
     {% include themes/twitter/headerTour.html %}
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span8">
-          <div id="workspace" class="span8">
-            <!-- <iframe src="{{ page.scalakata }}" frameborder="0" width="100%" height="100%" style="width:100%;height:100%" scrolling="no"></iframe> -->
-            {% include custom/kata.html %}
-          </div>
-        </div>
         <div class="span4" >
           <div class="span4" id="content">
             <h2><span class="badge page-num">{{ page.pageNumber }}</span> {{ page.title }}</h2>
@@ -161,31 +194,36 @@
               </div>
             {% endif %}
             <hr>
-            <div class="alert alert-error">
+            <!-- <div class="alert alert-error">
               <strong><i class="icon icon-warning-sign"></i> Work in progress:</strong>
               To report errors, comment or contribute please <a href="https://github.com/scalatutorials/scalatutorials.github.io/issues" target="_blank">open an issue</a>
-            </div>
+            </div> -->
                 
           </div>
-           <div class="bottom-right">
-              <ul class="pager">
-                <li>
-                <a id="toc" href="#">TOC</a>
-                </li>
-                {% if page.pageNumber > 1 %}
-                <li>
-                  <a href="{{page.prevPage}}">&#9664; Prev</a>
-                </li>
-                {% endif %}
-                {% if page.isLast != true %}
-                <li>
-                  <a class="btn-primary" href="{{page.nextPage}}">Next &#9654;</a>
-                </li>
-                {% endif %}
-              </ul>   
-           </div>
         </div>
-
+        <div class="span8">
+          <div id="workspace" class="span8">
+            <!-- <iframe src="{{ page.scalakata }}" frameborder="0" width="100%" height="100%" style="width:100%;height:100%" scrolling="no"></iframe> -->
+            {% include custom/kata.html %}
+          </div>
+        </div>
+        <div class="bottom-right">
+          <ul class="pager">
+            <li>
+              <a id="toc" href="#">TOC</a>
+            </li>
+            {% if page.pageNumber > 1 %}
+            <li>
+              <a href="{{page.prevPage}}">&#9664; Prev</a>
+            </li>
+            {% endif %}
+            {% if page.isLast != true %}
+            <li>
+              <a class="btn-primary" href="{{page.nextPage}}">Next &#9654;</a>
+            </li>
+            {% endif %}
+           </ul>   
+         </div>
       </div>
     </div>
     <!-- Modal -->
