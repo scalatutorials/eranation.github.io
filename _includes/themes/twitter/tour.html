@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }} (A Tour of Scala - #{{ page.pageNumber }})</title>
-    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <title>A Tour of Scala - an interactive scala tutorial - {{ page.title }}</title>
+    {% comment %}{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}{% endcomment %}
+    <meta name="description" content="Interactive Scala Tutorial">
     <meta name="author" content="{{ site.author.name }}">
 
     <!-- Enable responsive viewport -->
@@ -132,7 +133,7 @@
     </style>
   </head>
   <body>
-    {% include themes/twitter/header.html %}
+    {% include themes/twitter/headerTour.html %}
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span8">
