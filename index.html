@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Scala Tutorials</title>
-  <meta name="description" content="Guides and tutorials for the Scala programming language. Including a live in browser starting with scala tutorial">
+  <meta name="description" content="Guides and tutorials for the Scala programming language. Including a live in-browser starting with scala tutorial">
   <meta name="author" content="Eran Medan">
   <!-- Enable responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,9 +73,20 @@
       .main-header small {
         font-size: 20px;
       }
+
+      .splash {
+        background-image: url(/assets/themes/twitter/bootstrap/img/scala_tutorials_screenshot_mobile.png) !important;
+      }
     }
 
     @media (max-width: 767px) and (min-width: 481px) {
+
+      .splash {
+        background-image: url(/assets/themes/twitter/bootstrap/img/scala_tutorials_screenshot_tablet.png) !important;
+      }
+
+      
+
       h1.main-header {
         /*font-family: 'Lobster', cursive !important;*/
         font-size: 50px;
@@ -117,6 +128,9 @@
       .signup-form {
         width: auto !important;
         /* margin-top: 0px !important; */
+      }
+      .hero-unit, .signup-form{
+        border-radius: 0px !important;
       }
 
     }
@@ -247,8 +261,6 @@
     </div>
   </div>
   </div>
-  <script src="/assets/themes/twitter/scalakata/webjars/jquery.min.js" id="jquery"></script>
-  <script src="/assets/themes/twitter/bootstrap/js/bootstrap.min.js"></script>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
