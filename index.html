@@ -442,9 +442,11 @@
         element.style.top = "-13px";
       } else if (w < 1700) {
         element.style.top = "-15px";
-      } else {
+      } else if (w < 1800) {
         element.style.top = "-17px";
-      }
+      } else {
+        element.style.top = "-19px";
+      } 
     } else {
       element.className = "";
     }
