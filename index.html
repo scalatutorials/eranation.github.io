@@ -280,11 +280,8 @@
         position: absolute;
         left: 20%;
         right: 45.8%;
-         /* border: 1px solid red;  */
         z-index: 10000000;
 
-         /* -webkit-perspective-origin: 20% 5%;  */
-        /*-11%;*/
         -webkit-perspective-origin: 9% -11%; 
            -moz-perspective-origin: 9% -11%; 
              -o-perspective-origin: 9% -11%; 
@@ -296,8 +293,6 @@
              -o-perspective: 1400px;
                 perspective: 1400px;
             -ms-perspective: 1400px;
-        /* transform: rotate(7deg);
-        -ms-transform: rotate(7deg); */
       }
 
       #card.animate { 
@@ -310,36 +305,16 @@
       #card.expanded {
         border-radius: 5px;
         border: 1px solid white;
-/*      -webkit-transform: rotateY( 0deg ) rotateX( 0deg ) rotateZ( 0deg ) skewX(0deg);
-            -moz-transform: rotateY( 12deg ) rotateX( -6deg ) rotateZ( -2deg ) skewX(-1deg);
-              -o-transform: rotateY( 12deg ) rotateX( -6deg ) rotateZ( -2deg ) skewX(-1deg);
-             -ms-transform: rotateY( 12deg ) rotateX( -6deg ) rotateZ( -2deg ) skewX(-1deg);
-                 transform: rotateY( 12deg ) rotateX( -6deg ) rotateZ( -2deg ) skewX(-1deg);                
-       */      
-/*     -webkit-transform: none; 
-   -moz-transform: none; 
-    -ms-transform: none; 
-     -o-transform: none; 
-        transform: none;
- */
-        
--webkit-transform: scale(1.5,1.5) translate(-30px,65px); 
-   -moz-transform: scale(1.5,1.5) translate(-30px,65px);
-    -ms-transform: scale(1.5,1.5) translate(-30px,65px);
-     -o-transform: scale(1.5,1.5) translate(-30px,65px);
-        transform: scale(1.5,1.5) translate(-30px,65px); 
-/* width: 150%;
-          height: 120%;
-            -webkit-transition-delay: 2s;
-            -webkit-transition:width 2s ease-in-out, height 2s ease-in-out, -webkit-transform 1s;
-          -moz-transition:width 300ms ease-in-out, height 300ms ease-in-out;
-          -o-transition:width 300ms ease-in-out, height 300ms ease-in-out;
-          transition:width 300ms ease-in-out, height 300ms ease-in-out;            
-          -ms-transition:width 300ms ease-in-out, height 300ms ease-in-out;       */      
 
+        
+        -webkit-transform: scale(1.5,1.5) translate(-30px,65px); 
+           -moz-transform: scale(1.5,1.5) translate(-30px,65px);
+            -ms-transform: scale(1.5,1.5) translate(-30px,65px);
+             -o-transform: scale(1.5,1.5) translate(-30px,65px);
+                transform: scale(1.5,1.5) translate(-30px,65px); 
      }
       #card {
-        /* border-radius: 5px; */
+
         width: 103%;
         height: 98%;
         position: relative;
@@ -352,9 +327,6 @@
              -o-transform-style: preserve-3d;
                 transform-style: preserve-3d;
              ms-transform-style: preserve-3d;
-
-          /* rotateY( 13deg ) rotateX( -7deg ) rotateZ( -2deg ); */
-          /*rotateY( 15deg ) rotateX( -5deg ) rotateZ( -2deg );*/
 
         -webkit-transform: rotateY( 12deg ) rotateX( -6deg ) rotateZ( -2deg ) skewX(-1deg);
            -moz-transform: rotateY( 12deg ) rotateX( -6deg ) rotateZ( -2deg ) skewX(-1deg);
@@ -432,10 +404,9 @@
     vidEl.style.top = top + "px";
     vidEl.style.height = Math.round((vidEl.offsetWidth / 1.438689132444542)) + "px";
 
-
     var element = document.getElementById("card");
 
-    if(w>=1200) {
+    if(w >= 1200) {
       if(w < 1400) {
         element.style.top = "-10px";
       } else if (w < 1600) {
@@ -451,21 +422,21 @@
       element.className = "";
     }
     
-    // if(vidEl.style.webkitPerspective) {
-    //   vidEl.style.webkitPerspective = w + "px";
-    // }
-    // if(vidEl.style.mozPerspective) {
-    //   vidEl.style.mozPerspective = w + "px";
-    // }
-    // if(vidEl.style.oPerspective) {
-    //   vidEl.style.oPerspective = w + "px";
-    // }
-    // if(vidEl.style.msPerspective) {
-    //   vidEl.style.msPerspective = w + "px";
-    // }
-    // if(vidEl.style.perspective) {
-    //   vidEl.style.perspective = w + "px";
-    // }
+    if(typeof vidEl.style.webkitPerspective !== "undefined") {
+       vidEl.style.webkitPerspective = w + "px";
+    }
+    if(typeof vidEl.style.mozPerspective !== "undefined") {
+      vidEl.style.mozPerspective = w + "px";
+    }
+    if(typeof vidEl.style.oPerspective !== "undefined") {
+      vidEl.style.oPerspective = w + "px";
+    }
+    if(typeof vidEl.style.msPerspective !== "undefined") {
+      vidEl.style.msPerspective = w + "px";
+    }
+    if(typeof vidEl.style.perspective !== "undefined") {
+      vidEl.style.perspective = w + "px";
+    }
 
     // if(vidEl.style.webkitPerspectiveOrigin) {
     //   vidEl.style.webkitPerspectiveOrigin = "left " + top + "px";
