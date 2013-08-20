@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Scala Tutorials</title>
-  <meta name="description" content="Guides and tutorials for the Scala programming language. Including a live in-browser starting with scala tutorial">
+  <meta name="description" content="Guides and tutorials for the Scala programming language. Try Scala in your browser with a quick interactive Scala tutorial">
   <meta name="author" content="Eran Medan">
   <!-- Enable responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,6 +112,10 @@
   }
 }
  */
+
+    #tweet {
+      margin-top: 25px;
+    }
 
     @media (max-width: 1199px) {
       .splash {
@@ -351,6 +355,14 @@
 
 </head>
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=573266672736269";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
   <div id="video">
     <div id="card">
       <iframe id="live-code" style="display:none; width:100%; height:100%; border:none" src="/homepage_editor.html" width="100%" height="100%" frameborder="0"></iframe>
@@ -380,9 +392,14 @@
             <label for="mce-EMAIL">Sign up to to be notified when the site launches!</label>
             <input type="email" value="" name="EMAIL" class="email" style="display:inline-block" id="mce-EMAIL" placeholder="email address" required>
             <input type="submit" style="display:inline-block" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary btn-large btn-lg">
-            <div class="" style="margin: 10px auto;"><br>In the meantime you can try the <a class="btn btn-danger btn-large btn-lg" href="/tour">Basic Scala Tutorial</a><br/><small>* no sign up or download needed, runs in your browser, 100% free</small></div>
+            <div class="" style="margin: 10px auto;"><br>In the meantime you can try the <a class="btn btn-danger btn-large btn-lg" href="/tour">Basic Scala Tutorial</a><br/><!-- <small>* no sign up or download needed, runs in your browser, 100% free</small> --></div>
             <div id="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://scalatutorials.com" data-text="Scala Tutorials" data-via="ScalaTutorials" data-related="scalatutorials" data-hashtags="scala">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+            <div class="g-plusone" data-size="medium" data-href="http://scalatutorials.com"></div>
+            <div class="fb-like" data-href="http://scalatutorials.com" data-width="450" data-layout="button_count" data-show-faces="true" data-send="false"></div>
+            <!-- <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fscalatutorials.com&amp;width=450&amp;height=21&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;send=false&amp;appId=573266672736269" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe> -->
+            </div>
           </form>
         </div>
       </div>
@@ -448,9 +465,14 @@
 
 
   };
-  window.onload = function () {
+
+  function init() {
     window.onresize();
     document.getElementById("live-code").style.display = "block";
+  }
+  init();
+  window.onload = function () {
+    init();
   }
 
   function expand(button) {
@@ -472,6 +494,7 @@
   ga('create', 'UA-42510108-1', 'scalatutorials.com');
   ga('send', 'pageview');
   </script>
+  <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 </body>
 </html>
 
