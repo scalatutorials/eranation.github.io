@@ -2,10 +2,10 @@
 layout: tour
 title: "Mutable Collections"
 description: "Scala language tour"
-pageNumber: 26
+pageNumber: 27
 isLast: false
 group: tour
-nextPage: interactive_tour_of_scala_collections__accessing_elements.html
+nextPage: interactive_tour_of_scala_mutable_collections_operations.html
 prevPage: interactive_tour_of_scala_maps.html
 links:
 - text: Concrete Mutable Collection Classes
@@ -25,7 +25,7 @@ code:
   
 ---
 
-Other than `Array` all of the collections discussed were immutable. Scala "recommends" immutable collections (hence they are those used by default) however sometimes mutable collections might have some benefits, either for CPU / memory performance, for code readability or simply a matter of preference. Scala provides concrete mutable collections in `scala.collections.mutable`
+Scala "encourages" using immutable collections (hence they are those used by default) however sometimes mutable collections might have some benefits, either for CPU / memory performance, for code readability or simply a matter of preference. As we saw earlier, Scala provides concrete mutable collections in `scala.collections.mutable`
 
 - Best practice suggests that you prefix mutable collections with `mutable`, this might not seem useful for `ArrayBuffer`, but it will for `scala.collections.mutable.Map`
 - `ArrayBuffer` is the more or less equivalent to java's `java.util.ArrayList` which is backed by an array

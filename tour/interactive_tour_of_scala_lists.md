@@ -2,7 +2,7 @@
 layout: tour
 title: "Lists"
 description: "Scala language tour"
-pageNumber: 23
+pageNumber: 24
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_sets.html
@@ -14,8 +14,47 @@ links:
   url: http://www.scala-lang.org/api/current/index.html#scala.package
 code:
   |
-  List(1, 2, 3) //Immutable list of type List[Int]  
-  List("a", 2, true) //Immutable list of type List[Any]  
+  val list1 = List(1, 2, 3) //Immutable list of type List[Int]  
+  val list2 = List("a", 2, true) //Immutable list of type List[Any]  
+  import collection.mutable  
+  val mlist = mutable.ArrayBuffer("a", "b", "c") //the "mutable version" of List  
+  
+  //Access items using (index) not [index]  
+  val firstItem = list1(0)  
+  println(firstItem) // 1  
+  
+  //Modify items the same way  (mutable Lists only)  
+  mlist(0) = "d"  
+  println(mlist) //ArrayBuffer(d, b, c)  
+  
+  //Concatenation using the ++ operator  
+  val concatenated = list1 ++ list2 ++ mlist  
+  println(concatenated) // List(1, 2, 3, a, 2, true, d, b, c)  
+  //Concatenation doesn't modify the lists themselves   
+  println(list1) //List(1, 2, 3)  
+  
+  //Removing elements (mutable Lists only)  
+  mlist -= "c"  
+  println (mlist) //ArrayBuffer(d, b)  
+  
+  //Adding elements (mutable Lists only)  
+  mlist += "e"  
+  mlist ++= List("f", "g")  
+  
+  println (mlist) //ArrayBuffer(d, b, e, f, g)  
+  
+  //Diff  
+  val diffList = List(1,2,3,4) diff List(2,3)  
+  println(diffList) // List(1, 4)  
+  
+  //Find (stops when item is found)  
+  val personList = List(("Alice",1), ("Bob",2), ("Carol",3))  
+  def findByName(name:String) = personList.find(_._1 == name).getOrElse(("David",4))  
+  val findBob = findByName("Bob")  
+  val findEli = findByName("Eli")  
+  
+  println(findBob._2) //2  
+  println(findEli._2) //4  
   
   
 ---

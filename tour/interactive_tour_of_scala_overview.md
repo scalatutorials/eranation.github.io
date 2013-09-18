@@ -133,6 +133,23 @@ code:
   
 ---
 
+### Overview 
+
+Welcome to the basic Scala tour! it is aimed at anyone who would like to learn Scala's basics, while writing and running code directly in the browser. 
+On the left is a summary of Scala's language features that will be covered.
+
+*Important* if you don't understand any of the code on the left, this is ok, and not just ok, it's expected, this will all be covered in the next steps. Simply click "Next" to get the tour started. 
+
+### Executable examples 
+
+<div class="alert alert-info">
+    <strong>Tip:</strong> to execute the code, click the green <button value="Run" disabled="disabled" name="run" type="submit" class="btn btn-success">
+    <i class="icon-play icon-white"></i>
+</button> button, <br>or press <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
+</div>
+
+### Some Fun Facts
+
 - Scala is a statically typed, object oriented functional language, merging two popular programming approches into one
 - Built by Martin Odersky at EPFL, launched in 2003, open source
 - Used by Twitter, Linked In, Yammer, Foursquare, OpenStudy, eBay, Amazon and many others

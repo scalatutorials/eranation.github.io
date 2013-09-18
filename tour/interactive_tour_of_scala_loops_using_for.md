@@ -2,7 +2,7 @@
 layout: tour
 title: "Loops using for"
 description: "Scala language tour"
-pageNumber: 18
+pageNumber: 19
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_loops_without_loops.html

@@ -2,7 +2,7 @@
 layout: tour
 title: "Method definition 3"
 description: "Scala language tour"
-pageNumber: 11
+pageNumber: 12
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_anonymous_functions.html

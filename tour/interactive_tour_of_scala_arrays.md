@@ -2,7 +2,7 @@
 layout: tour
 title: "Arrays"
 description: "Scala language tour"
-pageNumber: 22
+pageNumber: 23
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_lists.html
@@ -14,8 +14,37 @@ code:
   |
   val array1 = Array(1, 2, 3) //Mutable array of type Array[Int]  
   val array2 = Array("a", 2, true) //Mutable array of type Array[Any]  
+  val array3 = Array("a", "b", "c") //Mutable array of type Array[String]  
   
-  println(array1.mkString(","))  
+  //Access items using (index) not [index]  
+  val itemAtIndex0 = array3(0)   
+  println(itemAtIndex0) // a  
+  
+  //Modify items the same way  
+  array3(0) = "d"  
+  println(array3.mkString(",")) //d,b,c  
+  
+  //Concatenation using the ++ operator  
+  val concatenated = array1 ++ array2   
+  println(concatenated.mkString(",")) // 1,2,3,a,2,true  
+  
+  //Finding an index of an item  
+  array3.indexOf("b") // 1  
+  
+  //Diff  
+  val diffArray = Array(1,2,3,4).diff(Array(2,3))  
+  println(diffArray.mkString(",")) // 1,4  
+  
+  //Find (stops when item is found)  
+  val personArray = Array(("Alice",1), ("Bob",2), ("Carol",3))  
+  def findByName(name:String) = personArray.find(_._1 == name).getOrElse(("David",4))  
+  val findBob = findByName("Bob")  
+  val findEli = findByName("Eli")  
+  
+  println(findBob._2) //2  
+  println(findEli._2) //4  
+  
+  
 ---
 
 - Arrays are constructed simply using `Array(element1, element2, ...)`

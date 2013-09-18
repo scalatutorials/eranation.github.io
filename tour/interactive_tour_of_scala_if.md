@@ -2,7 +2,7 @@
 layout: tour
 title: "If"
 description: "Scala language tour"
-pageNumber: 20
+pageNumber: 21
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_match_as_a_switch.html

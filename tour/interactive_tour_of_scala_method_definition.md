@@ -2,11 +2,11 @@
 layout: tour
 title: "Method definition"
 description: "Scala language tour"
-pageNumber: 9
+pageNumber: 10
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_method_definition_2.html
-prevPage: interactive_tour_of_scala_string_formatting.html
+prevPage: interactive_tour_of_scala_useful_operations.html
 links:
 
 code:

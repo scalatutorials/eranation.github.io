@@ -2,10 +2,10 @@
 layout: tour
 title: "Immutable collections with var"
 description: "Scala language tour"
-pageNumber: 30
+pageNumber: 29
 isLast: false
 group: tour
-nextPage: interactive_tour_of_scala_work_in_progress.html
+nextPage: interactive_tour_of_scala_classes.html
 prevPage: interactive_tour_of_scala_mutable_collections_operations.html
 links:
 

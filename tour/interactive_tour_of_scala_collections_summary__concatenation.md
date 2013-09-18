@@ -1,6 +1,6 @@
 ---
 layout: tour
-title: "Collections - Concatenation"
+title: "Collections Summary - Concatenation"
 description: "Scala language tour"
 pageNumber: 29
 isLast: false
@@ -30,6 +30,8 @@ code:
   println(listConcat2.mkString(","))  
   println(mapConcat.mkString(","))  
 ---
+
+All collections also have a common syntax for concatenating elements. 
 
 - Arrays, Lists Maps and Sets can be concatenated using the `++` method 
 - You can `chain` this to concatenate multiple collections, e.g. `List(1, 2, 3) ++ List(4, 5, 6) ++ List(7, 8, 9)`
