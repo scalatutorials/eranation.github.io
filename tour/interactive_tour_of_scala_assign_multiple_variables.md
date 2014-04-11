@@ -2,7 +2,7 @@
 layout: tour
 title: "Assign multiple variables"
 description: "Scala language tour"
-pageNumber: 17
+pageNumber: 16
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_loops_using_while.html

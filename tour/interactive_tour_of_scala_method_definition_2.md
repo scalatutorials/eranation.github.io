@@ -2,7 +2,7 @@
 layout: tour
 title: "Method definition 2"
 description: "Scala language tour"
-pageNumber: 11
+pageNumber: 10
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_method_definition_3.html

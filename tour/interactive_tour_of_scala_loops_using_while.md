@@ -2,7 +2,7 @@
 layout: tour
 title: "Loops using while"
 description: "Scala language tour"
-pageNumber: 18
+pageNumber: 17
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_loops_using_for.html

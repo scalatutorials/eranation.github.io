@@ -2,7 +2,7 @@
 layout: tour
 title: "Final Variables"
 description: "Scala language tour"
-pageNumber: 5
+pageNumber: 4
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_printing_values.html

@@ -2,11 +2,11 @@
 layout: tour
 title: "Scalculator"
 description: "Scala language tour"
-pageNumber: 2
+pageNumber: 1
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_operators_are_methods.html
-prevPage: interactive_tour_of_scala_overview.html
+prevPage: 
 links:
 
 code:

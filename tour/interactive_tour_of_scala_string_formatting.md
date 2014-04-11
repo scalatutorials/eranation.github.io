@@ -2,7 +2,7 @@
 layout: tour
 title: "String formatting"
 description: "Scala language tour"
-pageNumber: 8
+pageNumber: 7
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_useful_operations.html

@@ -2,7 +2,7 @@
 layout: tour
 title: "Operators are methods"
 description: "Scala language tour"
-pageNumber: 3
+pageNumber: 2
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_variables.html

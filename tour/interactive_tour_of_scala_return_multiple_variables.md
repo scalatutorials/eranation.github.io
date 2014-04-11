@@ -2,7 +2,7 @@
 layout: tour
 title: "Return multiple variables"
 description: "Scala language tour"
-pageNumber: 15
+pageNumber: 14
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_declare_multiple_variables.html

@@ -80,19 +80,13 @@ code:
   
   //easy class definition, support for mixins using traits     
   case class Person(name:String, favoriteLanguage:String) extends Namable with Randomable    
-  case class Superhero(name:String) extends Namable with Randomable    
   
-  //type aliases   
-  type NamRam = Namable with Randomable   
-  
-  val person:NamRam = Person("Alice", "Scala")     
-  //val person:Namable = Superhero("man")     
+  val person:Namable with Randomable = Person("Alice", "Scala")     
   
   //Pattern Matching   
   person match {     
     case p @ Person(n, fl) => println(s"${p.greet} p.s. we like $fl too!" +  
         s"Random number: ${p.rand}. (Still ${p.rand})")    
-    case sh @ Superhero(n) => println(sh.greet, sh.rand)    
     case _ => println("hm...")    
   }    
   
@@ -128,8 +122,7 @@ code:
     }    
   }    
   val useless = new Useless    
-  useless.reticulate("splines", "marbles")    
-  
+  useless.reticulate("splines", "marbles")   
   
 ---
 

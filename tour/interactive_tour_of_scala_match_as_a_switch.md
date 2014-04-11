@@ -2,7 +2,7 @@
 layout: tour
 title: "Match as a Switch"
 description: "Scala language tour"
-pageNumber: 22
+pageNumber: 21
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_arrays.html

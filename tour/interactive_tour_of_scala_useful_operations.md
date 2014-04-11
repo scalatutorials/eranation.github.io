@@ -2,7 +2,7 @@
 layout: tour
 title: "Useful operations"
 description: "Scala language tour"
-pageNumber: 9
+pageNumber: 8
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_method_definition.html
@@ -13,10 +13,12 @@ code:
   |
   //Number operations   
   //Ranges   
-  
-  val range = 1 to 10 //creates a range between 1 to 10 inclusive  
-  val range2 = 1 until 10 //creates a range between 1 to 10 exclusive   
-  val range3 = 2 until 10 by 3 //from 2 to 10 with jumps of 3  
+  //creates a range between 1 to 10 inclusive  
+  val range = 1 to 10   
+  //creates a range between 1 to 10 exclusive   
+  val range2 = 1 until 10   
+  //from 2 to 10 with jumps of 3  
+  val range3 = 2 until 10 by 3   
   
   println(range3.toList) //List(2, 5, 8)  
   

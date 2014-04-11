@@ -2,7 +2,7 @@
 layout: tour
 title: "Maps"
 description: "Scala language tour"
-pageNumber: 26
+pageNumber: 25
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_mutable_collections.html

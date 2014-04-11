@@ -1,156 +1,231 @@
-$.fn.openkata = function(kataOptions,codeMirrorOptions){
+$.fn.openkata = function(kataOptions, codeMirrorOptions) {
 
-    'use strict';
-    var actionToMode, codeMirrorDefaults, form;
+  'use strict';
+  var actionToMode, codeMirrorDefaults, form;
 
-    form = this;
-    codeMirrorDefaults = {
-        lineNumbers: true,
-        matchBrackets: true,
-        indentWithTabs: false,
-        smartIndent: false,
-        styleActiveLine: true,
-        indentUnit: 2,
-        tabSize: 2,
-        autoClearEmptyLines: true,
-        firstLineNumber: 0,
-        // theme:"solarized dark"
-        //theme:"monokai"
-        theme:"eclipse"
-    }
-    codeMirrorOptions = $.extend(codeMirrorDefaults,codeMirrorOptions)
+  form = this;
+  codeMirrorDefaults = {
+    lineNumbers: true,
+    matchBrackets: true,
+    indentWithTabs: false,
+    smartIndent: false,
+    styleActiveLine: true,
+    indentUnit: 2,
+    tabSize: 2,
+    autoClearEmptyLines: true,
+    firstLineNumber: 0,
+    // theme:"solarized dark"
+    //theme:"monokai"
+    theme: "eclipse"
+  }
+  codeMirrorOptions = $.extend(codeMirrorDefaults, codeMirrorOptions)
 
-    // Show once
-    if($(this).hasClass("kataifyed")) return
-    $(this).addClass("kataifyed")
+  // Show once
+  if ($(this).hasClass("kataifyed")) return
+  $(this).addClass("kataifyed")
 
-    $(this).find(".kata-code").each(function(){
-        var options, mirror, testMirror, lang, action;
-        testMirror = null;
+  $(this).find(".kata-code").each(function() {
+    var options, mirror, testMirror, lang, action;
+    testMirror = null;
 
-        action = $(form).attr("action");
-        lang = action.substring(action.indexOf("api/") +"api/".length,action.length);
-        options = $.extend(codeMirrorOptions,{
-            mode: "text/x-" + lang
-        });
-        mirror = CodeMirror.fromTextArea(this,options);
-        $(this).data("editor", mirror);
-        $(form).find(".kata-test").each(function(){
-            delete options.autofocus;
-            testMirror = CodeMirror.fromTextArea(this,options);
-        });
-        
-        function runCode(){
-            var $console, $result, $run, code, test;
+    action = $(form).attr("action");
+    lang = action.substring(action.indexOf("api/") + "api/".length, action.length);
+    options = $.extend(codeMirrorOptions, {
+      mode: "text/x-" + lang
+    });
+    mirror = CodeMirror.fromTextArea(this, options);
+    $(this).data("editor", mirror);
+    $(form).find(".kata-test").each(function() {
+      delete options.autofocus;
+      testMirror = CodeMirror.fromTextArea(this, options);
+    });
 
-            // disable until response from server
-            $run = $(form).find("[name='run']");
-            if($run.prop("disabled")) { return; }
-            $run.prop("disabled",true);
+    function runCode() {
+      var $console, $result, $run, code, test;
 
-            $console = $(form).find(".kata-console");
-            $result = $(form).find(".kata-result")
+      // disable until response from server
+      $run = $(form).find("[name='run']");
+      if ($run.prop("disabled")) {
+        return;
+      }
+      $run.prop("disabled", true);
 
-            $console.empty();
-            $result.empty();
+      $console = $(form).find(".kata-console");
+      $result = $(form).find(".kata-result")
 
-            function pushState(code,result,success){
-                var path;
-                if (result.id !== undefined && kataOptions.pushState) {
-                    path = "/";
-                    if( -1 != window.location.pathname.indexOf("tdd") ) {
-                        path = "/tdd/"
-                    }
-                    window.history.pushState($.extend(result,{code:code,status:success}), null, path + result.id);
+      $console.empty();
+      $result.empty();
+
+      function pushState(code, result, success) {
+        var path;
+        if (result.id !== undefined && kataOptions.pushState) {
+          path = "/";
+          if (-1 != window.location.pathname.indexOf("tdd")) {
+            path = "/tdd/"
+          }
+          window.history.pushState($.extend(result, {
+            code: code,
+            status: success
+          }), null, path + result.id);
+        }
+      }
+
+      function renderEval(data) {
+        if (data.errors !== undefined && data.errors.length > 0) {
+          var $errorList;
+          $console.text("Errors")
+          $errorList = $("<ol/>");
+          $result.append($errorList);
+          $.each(data.errors, function(i, error) {
+            var $errorElement, $errorSeverity, $errorLine, $errorMessage;
+            error.column -= 1;
+            $errorElement = $("<li/>");
+            $errorElement.addClass("error");
+            $errorSeverity = $("<div/>")
+            $errorSeverity.text(error.severity);
+            $errorSeverity.addClass("severity");
+
+            function showError(error, cm, code) {
+              var lines = cm.getValue().split("\n");
+              var foundLine = -1;
+              var foundCol = -1;
+              var posSoFar = 0;
+              for(var i = 0; i < lines.length ; i++ ) {
+                var line = lines[i];
+                var prevSoFar = posSoFar;
+                posSoFar+= line.length;
+                if(error.position <= posSoFar) {
+                  error.line = i;
+                  error.column = error.position - prevSoFar;
+                  break;
                 }
-            }
+              }
+              $errorLine = $("<div/>");
+              $errorLine.text((code ? "" : "test ") + "L" + error.line +
+                ":" + error.column);
+              $errorLine.addClass("line");
+              $errorLine.click(function() {
+                cm.setSelection(
+                  CodeMirror.Pos(error.line, error.column),
+                  CodeMirror.Pos(error.line, Infinity)
+                );
+              });
+            };
 
-            function renderEval(data){
-                if (data.errors !== undefined ) {
-                    var $errorList;
-                    $console.text("Errors")
-                    $errorList = $("<ol/>");
-                    $result.append($errorList);
-                    $.each(data.errors, function(i, error){
-                        var $errorElement, $errorSeverity, $errorLine, $errorMessage;
-                        error.column -= 1;
-                        $errorElement = $("<li/>");
-                        $errorElement.addClass("error");
-                        $errorSeverity = $("<div/>")
-                        $errorSeverity.text(error.severity);
-                        $errorSeverity.addClass("severity");
+            showError(error, mirror, true);
 
-                        function showError(error,cm,code) {
-                            $errorLine = $("<div/>");
-                            $errorLine.text((code ? "" : "test ") + "L" + error.line + ":" + error.column);
-                            $errorLine.addClass("line");
-                            $errorLine.click(function(){
-                                cm.setSelection(
-                                    CodeMirror.Pos(error.line,error.column),
-                                    CodeMirror.Pos(error.line,Infinity)
-                                );
-                            });
-                        };
-                        
-                        if(error.line < mirror.lineCount()) {
-                            showError(error,mirror,true);
-                        } else {
-                            error.line -= mirror.lineCount();
-                            showError(error,testMirror,false);
-                        }
-                        $errorMessage = $("<pre/>");
-                        $errorMessage.text(error.message);
-                        $errorMessage.addClass("message")
-                        $errorElement.append($errorSeverity);
-                        $errorElement.append($errorLine);
-                        $errorElement.append($errorMessage);
-                        $errorList.append($errorElement);
-                    })
-                } else {
-                    $console.text(data.console);
-                    $result[0].innerHTML = data.result;
-                }
-            }
-            function renderFail(data) {
-                $console.text("");
-                if(data)
-                    $result.text(data.error);
-            }
-            function renderAlways() {
-               $(form).addClass("with-results");
-               $run.prop("disabled",false);
-            }
+            $errorMessage = $("<pre/>");
+            $errorMessage.text(error.message);
+            $errorMessage.addClass("message")
+            $errorElement.append($errorSeverity);
+            $errorElement.append($errorLine);
+            $errorElement.append($errorMessage);
+            $errorList.append($errorElement);
+          })
+        } else {
+          //$console.text(data.console);
+          $result[0].innerHTML = (data.output ? data.output + "</br>" : ""); //+
+            // data.insight.trim().replace("\n", "<br>");
+          var insightLines = data.insight.split("\n");
+          //console.log(insightLines);
 
-            // replay history
-            if (kataOptions.pushState) {
-                window.onpopstate = function(event) {
-                    var data;
-                    data = event.state;
-                    if (null !== data) {
-                        mirror.setValue(data.code);
-                        if (true === data.status) {
-                         renderEval(data);
-                        } else {
-                         renderFail(data);
-                        }
-                        renderAlways(data);
-                    } else {
-                        // intial state
-                        mirror.setValue("");
-                        $(form).removeClass("with-results");
-                    }
-                };
-            }
+          var editor = mirror;
+          var editorLines = editor.getValue().split("\n");
+          var rebuildCode = "";
+          //editor.setValue(data.insights);
+          for (var i = 0; i < editorLines.length; i++) {
+            var editorLine = editorLines[i];
+            editorLine = editorLine.replace(/\/\/>.*/,"")
 
-            code = mirror.getValue();
-            test = "";
-            if(null !== testMirror) {
-                test = testMirror.getValue();
-            }
-            var maxAttempts = 5;
-            var curAttempt = 1;
+            if (i < insightLines.length) {
+              var insightLine = insightLines[i];
 
-            var ajaxCall = function () {
+              var originalLength = editorLine.length;
+              if (insightLine.trim().length > 0) {
+                editorLine += "//>" + insightLine;
+              }
+              //editor.replaceRange(editorLine, {i: 0}, {i:originalLength});
+
+            }
+            rebuildCode += editorLine + "\n";
+
+
+          }
+          editor.setValue(rebuildCode);
+
+        }
+      }
+
+      function renderFail(data) {
+        $console.text("");
+        if (data)
+          $result.text(data.error);
+      }
+
+      function renderAlways() {
+        $(form).addClass("with-results");
+        $run.prop("disabled", false);
+      }
+
+      // replay history
+      if (kataOptions.pushState) {
+        window.onpopstate = function(event) {
+          var data;
+          data = event.state;
+          if (null !== data) {
+            mirror.setValue(data.code);
+            if (true === data.status) {
+              renderEval(data);
+            } else {
+              renderFail(data);
+            }
+            renderAlways(data);
+          } else {
+            // intial state
+            mirror.setValue("");
+            $(form).removeClass("with-results");
+          }
+        };
+      }
+
+      code = mirror.getValue();
+      test = "";
+      if (null !== testMirror) {
+        test = testMirror.getValue();
+      }
+      var maxAttempts = 5;
+      var curAttempt = 1;
+
+      var ajaxCall = function() {
+        //var socket = new WebSocket("wss://codebrew.io/eval");
+        $.when(codebrew.insight(code)).then(
+          function(result) {
+            console.log(result);
+            renderEval(result);
+            pushState(code, result, true);
+            //alert(status + ", things are going well");
+          },
+          function(result) {
+            console.log(result);
+            if (curAttempt++ < maxAttempts) {
+              //alert("trying again");
+              setTimeout(ajaxCall, 2);
+            } else {
+              var result;
+              result = data.responseJSON;
+              renderFail(result);
+              pushState(code, result, false);
+            }
+          },
+          function(status) {
+            console.log(status);
+          }
+        ).always(renderAlways);;
+
+      }
+
+      /*function () {
+
                 $.ajax({
                     url: form[0].action,
                     type: "POST",
@@ -175,24 +250,104 @@ $.fn.openkata = function(kataOptions,codeMirrorOptions){
                         renderFail(result);
                         pushState(code,result,false);
                     }
-                    
+
                 }).
                 always(renderAlways);
             }
-            ajaxCall();
+            */
+      ajaxCall();
 
-            return false;
-        }
-        $(form).keydown(function(e){
-            if( ( e.ctrlKey || e.metaKey ) &&               // command or ctrl +
-                ( e.keyCode == 13 || e.keyCode == 83 ) ) {  // enter, (s)ave
-                e.preventDefault();
-                runCode();
-            }
-        })
-        $(form).submit( function (e) {
-            e.preventDefault();
-            runCode();
-        });
+      return false;
+    }
+    $(form).keydown(function(e) {
+      if ((e.ctrlKey || e.metaKey) && // command or ctrl +
+        (e.keyCode == 13 || e.keyCode == 83)) { // enter, (s)ave
+        e.preventDefault();
+        runCode();
+      }
+    })
+    $(form).submit(function(e) {
+      e.preventDefault();
+      runCode();
     });
+  });
 };
+
+var codebrew = (function() {
+  var fetching = false;
+  var url = "wss://codebrew.io/eval";
+  var socket = new WebSocket(url);
+  var callbacks = {};
+  var currentCallbackId = 0;
+  var lastMessage = null;
+
+  function getCallbackId() {
+    currentCallbackId += 1;
+    /* max: http://ecma262-5.com/ELS5_HTML.htm#Section_8.5*/
+    if (currentCallbackId >= 9007199254740992 - 1) {
+      currentCallbackId = 0;
+    }
+    return currentCallbackId;
+  }
+
+  function listener(data) {
+    if (callbacks.hasOwnProperty(data.callback_id)) {
+      callbacks[data.callback_id].resolve(data);
+      delete callbacks[data.callback_id];
+    }
+  }
+
+  socket.onmessage = function(message) {
+    listener(JSON.parse(message.data));
+    fetching = false;
+  };
+
+  socket.onopen = function() {
+    if (null !== lastMessage) {
+      socket.send(lastMessage);
+      lastMessage = null;
+    }
+  };
+
+  function send(request, serviceName) {
+    fetching = true;
+    var defer = $.Deferred();
+    var callbackId = getCallbackId();
+    callbacks[callbackId] = defer;
+    request[serviceName].callback_id = callbackId;
+
+    switch (socket.readyState) {
+      case socket.OPEN:
+        socket.send(JSON.stringify(request));
+        break;
+      case socket.CONNECTING:
+        lastMessage = JSON.stringify(request);
+        break;
+      case socket.CLOSED:
+        lastMessage = JSON.stringify(request);
+        socket = new WebSocket(url); // reopen
+        break;
+    }
+
+    return defer.promise();
+  }
+
+  return {
+    "insight": function(code) {
+      return send({
+        "insight": {
+          "code": code
+        }
+      }, "insight");
+    },
+    "autocomplete": function(code, position) {
+      return send({
+        "autocomplete": {
+          "code": code,
+          "position": position
+        }
+      }, "autocomplete");
+    },
+    "fetching": fetching
+  };
+}());

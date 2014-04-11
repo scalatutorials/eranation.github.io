@@ -2,7 +2,7 @@
 layout: tour
 title: "Classes"
 description: "Scala language tour"
-pageNumber: 30
+pageNumber: 29
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_classes__continued.html

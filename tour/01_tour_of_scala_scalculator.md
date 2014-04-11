@@ -1,33 +1,34 @@
 ---
 layout: tour
-title: "Scalculator"
+title: "Operators are methods"
 description: "Scala language tour"
 pageNumber: 2
 isLast: false
 group: hidden
-nextPage: interactive_tour_of_scala_operators_are_methods.html
-prevPage: interactive_tour_of_scala_overview.html
+nextPage: interactive_tour_of_scala_variables.html
+prevPage: interactive_tour_of_scala_scalculator.html
 links:
-
+- text: Style Guide - Method Invocation
+  url: http://docs.scala-lang.org/style/method-invocation.html
+- text: Scala Reference - 6.12.3 Infix Operations
+  url: http://www.scala-lang.org/docu/files/ScalaReference.pdf
+- text: Scala Operators
+  url: http://w
 code:
   |
-  1 + 2  
+  (1).+(2)  
 ---
 
-Let's start with some basic arithmetic operations.
+In Scala, primitives are represented as objects. (Although after compilation they are using Java's primitives when possible for performance).
 
-Just like most languages, simple arithmetic operations are part of the language.
+Since they are objects, operators are simply method calls!
 
-Play with the editor on the left, type things like
+So `1 + 2` is simply calling a method named `+` on the object `1` (an `Int` literal)
 
-`2 * 3`
+e.g. 
 
-`10 / 2`
+`1 + 2` is actually: `(1).+(2)`
 
-or `20 / (3 + 7)`
+Scala has precedence for operator-like methods (that will be discussed later) to support correct arithmetic operations. 
 
-<div class="alert alert-info">
-    <strong>Tip:</strong> to execute the code, click the green <button value="Run" disabled="disabled" name="run" type="submit" class="btn btn-success">
-    <i class="icon-play icon-white"></i>
-</button> button, <br>or press <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-</div>
+This notation is called "operator notation" or "infix notation" is not limited just to arithmetic operations, but this will be explained later.

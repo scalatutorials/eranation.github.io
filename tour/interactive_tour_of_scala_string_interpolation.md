@@ -2,7 +2,7 @@
 layout: tour
 title: "String interpolation"
 description: "Scala language tour"
-pageNumber: 7
+pageNumber: 6
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_string_formatting.html
@@ -14,7 +14,7 @@ links:
   url: http://tauday.com
 code:
   |
-  import math._  
+  import scala.math._  
   val Tau = Pi*2  
   println(s"Happy $Tau Day")  
 ---

@@ -2,7 +2,7 @@
 layout: tour
 title: "Printing values"
 description: "Scala language tour"
-pageNumber: 6
+pageNumber: 5
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_string_interpolation.html

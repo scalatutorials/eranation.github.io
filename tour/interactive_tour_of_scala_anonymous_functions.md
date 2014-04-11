@@ -2,7 +2,7 @@
 layout: tour
 title: "Anonymous Functions"
 description: "Scala language tour"
-pageNumber: 13
+pageNumber: 12
 isLast: false
 group: tour
 nextPage: interactive_tour_of_scala_anonymous_functions_2.html
