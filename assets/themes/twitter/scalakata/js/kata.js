@@ -14,6 +14,7 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
     tabSize: 2,
     autoClearEmptyLines: true,
     firstLineNumber: 0,
+    lineWrapping: true,
     // theme:"solarized dark"
     //theme:"monokai"
     theme: "eclipse"
@@ -25,15 +26,25 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
   $(this).addClass("kataifyed")
 
   $(this).find(".kata-code").each(function() {
-    var options, mirror, testMirror, lang, action;
+    var options, mirror, testMirror, lang, action, autoUpdate;
     testMirror = null;
-
+    autoUpdate = false;
     action = $(form).attr("action");
     lang = action.substring(action.indexOf("api/") + "api/".length, action.length);
     options = $.extend(codeMirrorOptions, {
       mode: "text/x-" + lang
     });
     mirror = CodeMirror.fromTextArea(this, options);
+    var timeout;
+    mirror.on("change", function(instance, change) {
+      if (autoUpdate) {
+        console.log(instance, change);
+        if (timeout != null) {
+          clearTimeout(timeout);
+        }
+        timeout = setTimeout(runCode, 1000);
+      }
+    });
     $(this).data("editor", mirror);
     $(form).find(".kata-test").each(function() {
       delete options.autofocus;
@@ -41,6 +52,8 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
     });
 
     function runCode() {
+      autoUpdate = false;
+      console.log("calling runCode()");
       var $console, $result, $run, code, test;
 
       // disable until response from server
@@ -90,11 +103,11 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
               var foundLine = -1;
               var foundCol = -1;
               var posSoFar = 0;
-              for(var i = 0; i < lines.length ; i++ ) {
+              for (var i = 0; i < lines.length; i++) {
                 var line = lines[i];
                 var prevSoFar = posSoFar;
-                posSoFar+= line.length;
-                if(error.position <= posSoFar) {
+                posSoFar += line.length;
+                if (error.position <= posSoFar) {
                   error.line = i;
                   error.column = error.position - prevSoFar;
                   break;
@@ -125,7 +138,7 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
         } else {
           //$console.text(data.console);
           $result[0].innerHTML = (data.output ? data.output + "</br>" : ""); //+
-            // data.insight.trim().replace("\n", "<br>");
+          // data.insight.trim().replace("\n", "<br>");
           var insightLines = data.insight.split("\n");
           //console.log(insightLines);
 
@@ -135,25 +148,32 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
           //editor.setValue(data.insights);
           for (var i = 0; i < editorLines.length; i++) {
             var editorLine = editorLines[i];
-            editorLine = editorLine.replace(/\/\/>.*/,"")
+            editorLine = editorLine.replace(/\/\/>.*/, "")
 
             if (i < insightLines.length) {
               var insightLine = insightLines[i];
 
               var originalLength = editorLine.length;
               if (insightLine.trim().length > 0) {
-                editorLine += "//>" + insightLine;
+                //right trim the line
+                editorLine = editorLine.replace(/\s+$/, "") + (false &&
+                  editorLine.length > 50 ? "\n" : "") + " //> " + insightLine;
               }
               //editor.replaceRange(editorLine, {i: 0}, {i:originalLength});
 
             }
-            rebuildCode += editorLine + "\n";
+
+            rebuildCode += editorLine + (i+1 < editorLines.length?"\n":"");
 
 
           }
           editor.setValue(rebuildCode);
 
         }
+        setTimeout(function(){
+          //autoUpdate = true;
+        }, 100);
+
       }
 
       function renderFail(data) {
@@ -163,7 +183,9 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
       }
 
       function renderAlways() {
-        $(form).addClass("with-results");
+        if ($(form).find(".kata-result").text().trim() != "")
+          $(form).addClass("with-results");
+
         $run.prop("disabled", false);
       }
 

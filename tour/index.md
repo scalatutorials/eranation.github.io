@@ -11,7 +11,7 @@ links:
 
 code:
   |
-  1 + 2  
+  1 + 2 //> 3  
 ---
 
 Let's start with some basic arithmetic operations.

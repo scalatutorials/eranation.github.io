@@ -8,6 +8,8 @@
 .cm-s-monokai .CodeMirror-cursor {border-left: 1px solid #f8f8f0 !important;}
 
 .cm-s-monokai span.cm-comment {color: #75715e;}
+.cm-s-monokai span.cm-comment-special {color: coral;}
+
 .cm-s-monokai span.cm-atom {color: #ae81ff;}
 .cm-s-monokai span.cm-number {color: #ae81ff;}
 
@@ -36,7 +38,7 @@
 }
 
 .cm-s-monokai .CodeMirror-lines {
-  
+
   margin-left: 12px;
 }
 .cm-s-monokai .CodeMirror-measure {

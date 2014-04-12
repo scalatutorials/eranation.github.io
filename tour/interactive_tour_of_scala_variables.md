@@ -11,10 +11,10 @@ links:
 
 code:
   |
-  var x = 1 + 2  
-  println(x)  
-  x = 3 * 4  
-  println(x)  
+  var x = 1 + 2 //> x = 3  
+  println(x)    
+  x = 3 * 4 //> x = 12  
+  println(x)    
 ---
 
 Variables are declared using the `var` keyword

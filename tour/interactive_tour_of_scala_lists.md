@@ -14,48 +14,71 @@ links:
   url: http://www.scala-lang.org/api/current/index.html#scala.package
 code:
   |
-  val list1 = List(1, 2, 3) //Immutable list of type List[Int]  
-  val list2 = List("a", 2, true) //Immutable list of type List[Any]  
-  import collection.mutable  
-  val mlist = mutable.ArrayBuffer("a", "b", "c") //the "mutable version" of List  
+  //Immutable list of type List[Int]  
+  val list1 = List(1, 2, 3) //> list1 = List(1, 2, 3)  
+  //Immutable list of type List[Any]  
+  val list2 = List("a", 2, true) //> list2 = List(a, 2, true)  
+  import collection.mutable   
+  //the "mutable version" of List  
+  val mlist = mutable.ArrayBuffer("a", "b", "c") //> mlist = ArrayBuffer(d, b, e, f, g)  
   
-  //Access items using (index) not [index]  
-  val firstItem = list1(0)  
-  println(firstItem) // 1  
+  //Access items using (index) not [index]   
+  val firstItem = list1(0) //> firstItem = 1  
   
-  //Modify items the same way  (mutable Lists only)  
-  mlist(0) = "d"  
-  println(mlist) //ArrayBuffer(d, b, c)  
+  //Modify items the same way  (mutable Lists only)    
+  mlist(0) = "d"    
+  mlist //> ArrayBuffer(d, b, e, f, g)  
   
-  //Concatenation using the ++ operator  
-  val concatenated = list1 ++ list2 ++ mlist  
-  println(concatenated) // List(1, 2, 3, a, 2, true, d, b, c)  
-  //Concatenation doesn't modify the lists themselves   
-  println(list1) //List(1, 2, 3)  
+  //Concatenation using the ++ operator or ::: (lists only)  
+  list1 ++ list2 //> List(1, 2, 3, a, 2, true)  
+  list1 ::: list2 //> List(1, 2, 3, a, 2, true)  
   
-  //Removing elements (mutable Lists only)  
-  mlist -= "c"  
-  println (mlist) //ArrayBuffer(d, b)  
+  //Prepending an item using either :: (lists only) or +:  
+  0 :: list1 //> List(0, 1, 2, 3)  
+  0 +: list1 //> List(0, 1, 2, 3)  
   
-  //Adding elements (mutable Lists only)  
-  mlist += "e"  
-  mlist ++= List("f", "g")  
+  //appending an item using :+ (not efficient for immutable List)  
+  list1 :+ 4 //> List(1, 2, 3, 4)  
   
-  println (mlist) //ArrayBuffer(d, b, e, f, g)  
+  //all together  
+  val concatenated = 1 :: list1 ::: list2 ++ mlist :+ 'd' //> concatenated = List(1, 1, 2, 3, a, 2, true, d, b, c, d)  
+  //concatenation doesn't modify the lists themselves     
+  list1 //> List(1, 2, 3)  
   
-  //Diff  
-  val diffList = List(1,2,3,4) diff List(2,3)  
-  println(diffList) // List(1, 4)  
+  //Removing elements (mutable list only, creates a new array):  
   
-  //Find (stops when item is found)  
-  val personList = List(("Alice",1), ("Bob",2), ("Carol",3))  
-  def findByName(name:String) = personList.find(_._1 == name).getOrElse(("David",4))  
-  val findBob = findByName("Bob")  
-  val findEli = findByName("Eli")  
+  //creates a new array with "c" removed, mlist is not touched  
+  mlist - "c" //> ArrayBuffer(d, b)  
+  //creates a new array with e, f removed, mlist is not touched  
+  mlist -- List("e", "f") //> ArrayBuffer(d, b, c)  
+  //mlist not modified  
+  mlist //> ArrayBuffer(d, b, e, f, g)  
+  //Removing elements (mutable Lists only):   
   
-  println(findBob._2) //2  
-  println(findEli._2) //4  
+  //removes c from the list itself  
+  mlist -= "c" //> ArrayBuffer(d, b, e, f, g)  
+  mlist //> ArrayBuffer(d, b, e, f, g)  
+  //removes e and f from mlist itself  
+  mlist --= List("e", "f") //> ArrayBuffer(d, b, e, f, g)  
+  mlist //> ArrayBuffer(d, b, e, f, g)  
   
+  //Adding elements (mutable Lists only)   
+  mlist += "e" //> ArrayBuffer(d, b, e, f, g)  
+  mlist ++= List("f", "g") //> ArrayBuffer(d, b, e, f, g)  
+  
+  mlist //ArrayBuffer(d, b, e, f, g) //> ArrayBuffer(d, b, e, f, g)  
+  
+  //Diff   
+  val diffList = List(1,2,3,4) diff List(2,3) //> diffList = List(1, 4)  
+  
+  //Find (stops when item is found)   
+  val personList = List(("Alice",1), ("Bob",2), ("Carol",3)) //> personList = List((Alice,1), (Bob,2), (Carol,3))  
+  def findByName(name:String) = personList.find(_._1 == name).getOrElse(("David",4)) //> findByName(name = "foo") => (David,4)  
+  val findBob = findByName("Bob") //> findBob = (Bob,2)  
+  val findEli = findByName("Eli") //> findEli = (David,4)  
+  
+  findBob._2 //> 2  
+  findEli._2 //> 4  
   
 ---
 

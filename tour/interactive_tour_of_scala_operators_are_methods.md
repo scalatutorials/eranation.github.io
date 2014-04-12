@@ -16,7 +16,8 @@ links:
   url: http://w
 code:
   |
-  (1).+(2)  
+  (1).+(2) //> 3  
+  
 ---
 
 In Scala, primitives are represented as objects. (Although after compilation they are using Java's primitives when possible for performance).
