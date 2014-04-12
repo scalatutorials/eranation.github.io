@@ -156,8 +156,7 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
               var originalLength = editorLine.length;
               if (insightLine.trim().length > 0) {
                 //right trim the line
-                editorLine = editorLine.replace(/\s+$/, "") + (false &&
-                  editorLine.length > 50 ? "\n" : "") + " //> " + insightLine;
+                editorLine = editorLine.replace(/\s+$/, "") + " //> " + insightLine;
               }
               //editor.replaceRange(editorLine, {i: 0}, {i:originalLength});
 
