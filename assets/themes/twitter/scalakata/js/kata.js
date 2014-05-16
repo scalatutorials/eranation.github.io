@@ -135,36 +135,43 @@ $.fn.openkata = function(kataOptions, codeMirrorOptions) {
             $errorElement.append($errorMessage);
             $errorList.append($errorElement);
           })
-        } else {
-          //$console.text(data.console);
+        } else { // No errors, display insights
+          
           $result[0].innerHTML = (data.output ? data.output + "</br>" : ""); //+
-          // data.insight.trim().replace("\n", "<br>");
-          var insightLines = data.insight.split("\n");
-          //console.log(insightLines);
+          
+          var lineNrToInsightTextMap = {};
+          
+          // Populate insight map - TODO: move to separate function
+          for (var insightIdx = 0; insightIdx < data.insight.length; insightIdx++ ) {
+            // Example insight object: {line:1, result:"3", type:"CODE"}
+            var insightObj = data.insight[insightIdx];
+            var insightText = insightObj.result.trim();
+            // Subroutines such as println calls return the void object "()". Not interesting to display
+            if(insightObj.type == "CODE" && insightText.length > 0 && insightText != "()") {
+              var insightLineNr = insightObj.line - 1;  // 1-based!
+              lineNrToInsightTextMap[insightLineNr] = insightText;
+            }
+          }
 
           var editor = mirror;
           var editorLines = editor.getValue().split("\n");
           var rebuildCode = "";
-          //editor.setValue(data.insights);
-          for (var i = 0; i < editorLines.length; i++) {
-            var editorLine = editorLines[i];
+          
+          // Go through all editor lines
+          for (var editorLineNr = 0; editorLineNr < editorLines.length; editorLineNr++) {
+            var editorLine = editorLines[editorLineNr];
             editorLine = editorLine.replace(/\/\/>.*/, "")
+            //var originalLength = editorLine.length; // TODO: unused variable, remove
 
-            if (i < insightLines.length) {
-              var insightLine = insightLines[i];
-
-              var originalLength = editorLine.length;
-              if (insightLine.trim().length > 0) {
-                //right trim the line
-                editorLine = editorLine.replace(/\s+$/, "") + " //> " + insightLine;
-              }
-              //editor.replaceRange(editorLine, {i: 0}, {i:originalLength});
-
+            var insight = lineNrToInsightTextMap[editorLineNr];
+            
+            if (insight) {
+              //right trim the line
+              editorLine = editorLine.replace(/\s+$/, "") + " //> " + insight;
             }
+            //editor.replaceRange(editorLine, {i: 0}, {i:originalLength});
 
-            rebuildCode += editorLine + (i+1 < editorLines.length?"\n":"");
-
-
+            rebuildCode += editorLine + (editorLineNr+1 < editorLines.length?"\n":"");
           }
           editor.setValue(rebuildCode);
 
