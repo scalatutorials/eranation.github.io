@@ -36,4 +36,4 @@ code:
 ---
 
 - Mutable collections allow to add / remove a single / multple items while modifying the collection itself 
-- the methods  `+=`,  `+==`, `-=`, `-==` are actually defined in the mutable collections 
+- the methods  `+=`,  `++=`, `-=`, `--=` are actually defined in the mutable collections 
